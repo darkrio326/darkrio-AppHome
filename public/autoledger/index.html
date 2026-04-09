@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoLedger - 一键记账</title>
+  <meta
+    name="description"
+    content="AutoLedger 是一款基于截图与快捷指令的一键记账工具。按一下，就记好。"
+  />
+  <meta name="theme-color" content="#4f8a63" />
+  <style>
+    :root {
+      --bg: #f6f3ea;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --subtext: #666666;
+      --line: #e8e2d8;
+      --primary: #4f8a63;
+      --primary-dark: #3d6d4d;
+      --accent: #c9853f;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --radius: 20px;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: 100%;
+      padding: 24px 18px 64px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--subtext);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(79, 138, 99, 0.96), rgba(201, 133, 63, 0.94));
+      color: #fff;
+      border-radius: 30px;
+      padding: 52px 32px 36px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-desc {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.96;
+      max-width: 660px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .hero-note {
+      margin-top: 14px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 26px 24px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .muted {
+      color: var(--subtext);
+    }
+
+    .hero-card {
+      grid-column: span 12;
+    }
+
+    .feature {
+      grid-column: span 4;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #f0f6f1;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .flow {
+      grid-column: span 6;
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+      align-items: flex-start;
+    }
+
+    .flow-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      flex: 0 0 34px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .quote {
+      grid-column: span 6;
+      background: linear-gradient(135deg, #f7fbf7, #fff7ef);
+    }
+
+    .quote-big {
+      font-size: 36px;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin: 0 0 10px;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .list li {
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .cta {
+      grid-column: span 12;
+      background: linear-gradient(135deg, rgba(79, 138, 99, 0.08), rgba(201, 133, 63, 0.08));
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding: 20px 8px 0;
+      text-align: center;
+      color: var(--subtext);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 42px;
+      }
+
+      .feature,
+      .flow,
+      .quote {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 16px 14px 40px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding: 34px 20px 26px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .hero-desc,
+      p,
+      .list li {
+        font-size: 15px;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      .quote-big {
+        font-size: 28px;
+      }
+
+      .card-body {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="container">
+      <header class="nav">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span>AutoLedger</span>
+        </div>
+        <nav class="nav-links">
+          <a href="/autoledger/privacy/">隐私政策</a>
+          <a href="mailto:support@darkrio326.top">联系开发者</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="badge">⚡ 一键记账 · 截图即入账</div>
+          <h1>按一下，<br>就记好。</h1>
+          <p class="hero-desc">
+            AutoLedger 是一款基于截图、快捷指令和本地识别的一键记账工具。你只需要完成一次截图，再按一下操作按钮，应用就会自动识别金额与商户并生成账单。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/autoledger/privacy/">查看隐私政策</a>
+            <a class="btn btn-secondary" href="mailto:support@darkrio326.top">申请测试资格</a>
+          </div>
+          <div class="hero-note">
+            当前为早期测试版本。数据默认保存在本地设备中。
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <article class="card hero-card">
+          <div class="card-body">
+            <div class="eyebrow">为什么做它</div>
+            <h2>不是更方便地记账，<br>而是尽量不用记账。</h2>
+            <p>
+              很多人不是不想记账，而是每次都嫌麻烦。AutoLedger 的目标不是让你多点几步去记一笔账，而是把“记账”压缩成一个非常自然的动作。
+            </p>
+            <p class="muted">
+              截图是原本就会发生的行为；操作按钮、快捷指令与本地识别，则把后续流程缩短到几乎不需要思考。
+            </p>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="card-body">
+            <div class="feature-icon">⚡</div>
+            <h2>一键记账</h2>
+            <p>
+              配合快捷指令和操作按钮，按一下即可启动记账链路，减少打开 App、选图、输入金额等重复操作。
+            </p>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="card-body">
+            <div class="feature-icon">🧾</div>
+            <h2>截图识别</h2>
+            <p>
+              支持从支付截图、照片或分享内容中提取账单信息，自动识别金额、商户与时间，并生成记录。
+            </p>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="card-body">
+            <div class="feature-icon">🔒</div>
+            <h2>本地优先</h2>
+            <p>
+              账单数据默认存储在本地设备中。当前版本以本地处理为主，尽量减少不必要的数据外传。
+            </p>
+          </div>
+        </article>
+
+        <article class="card flow">
+          <div class="card-body">
+            <div class="eyebrow">使用流程</div>
+            <h2>只保留最短路径</h2>
+
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div>
+                <p><strong>完成支付并截图</strong></p>
+                <p class="muted">用户按平时习惯保存支付结果，不需要额外打开记账工具。</p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div>
+                <p><strong>按下操作按钮或运行快捷指令</strong></p>
+                <p class="muted">触发一键记账入口，系统将截图传入识别流程。</p>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div>
+                <p><strong>自动识别并入账</strong></p>
+                <p class="muted">AutoLedger 识别金额、商户、时间和分类，并给出“已记好”的结果反馈。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card quote">
+          <div class="card-body">
+            <div class="eyebrow">产品理念</div>
+            <p class="quote-big">让“记账”这件事，<br>尽量消失。</p>
+            <p>
+              我们不追求复杂的财务系统，也不试图一次做成大而全的记账平台。AutoLedger 只解决一个问题：
+            </p>
+            <p><strong>如何让你几乎不费力地留下每一笔消费记录。</strong></p>
+          </div>
+        </article>
+
+        <article class="card feature" style="grid-column: span 6;">
+          <div class="card-body">
+            <div class="eyebrow">当前版本能力</div>
+            <ul class="list">
+              <li>快捷指令一键记账</li>
+              <li>支付截图导入与识别</li>
+              <li>拍照识别与剪贴板导入</li>
+              <li>账本列表与基础月报</li>
+              <li>调试页查看 OCR 原文和解析结果</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card feature" style="grid-column: span 6;">
+          <div class="card-body">
+            <div class="eyebrow">适合谁</div>
+            <ul class="list">
+              <li>想记账，但不想手动输入的人</li>
+              <li>经常使用 iPhone 快捷指令和操作按钮的人</li>
+              <li>希望快速记录小额支出和日常消费的人</li>
+              <li>想先把消费记下来，后面再慢慢整理的人</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card cta">
+          <div class="card-body">
+            <div class="eyebrow">现在开始</div>
+            <h2>AutoLedger 正在内测中</h2>
+            <p>
+              如果你正在寻找一种更轻、更快、更接近无感的记账方式，欢迎通过邮件联系开发者获取测试资格或了解产品进展。
+            </p>
+            <div class="hero-actions" style="margin-top: 18px;">
+              <a class="btn btn-primary" href="mailto:support@darkrio326.top">联系开发者</a>
+              <a class="btn" style="background:#fff; color:var(--accent);" href="/autoledger/privacy/">查看隐私政策</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-links">
+          <a href="/autoledger/privacy/">隐私政策</a>
+          <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
+        </div>
+        <div>© 2026 AutoLedger</div>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
