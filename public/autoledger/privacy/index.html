@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoLedger 隐私政策</title>
+  <meta name="description" content="AutoLedger 隐私政策" />
+  <style>
+    :root {
+      --bg: #f6f3ea;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --subtext: #666666;
+      --line: #e8e2d8;
+      --primary: #4f8a63;
+      --primary-dark: #3d6d4d;
+      --accent: #c9853f;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --radius: 20px;
+      --max-width: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      width: 100%;
+      padding: 32px 20px 64px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(79, 138, 99, 0.95), rgba(201, 133, 63, 0.92));
+      color: #fff;
+      border-radius: 28px;
+      padding: 40px 32px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      margin-bottom: 14px;
+    }
+
+    .brand-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #fff;
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+      max-width: 720px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .meta-item {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      line-height: 1.2;
+      backdrop-filter: blur(8px);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-top: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .section {
+      padding: 28px 28px 8px;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin: 0 0 14px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .muted {
+      color: var(--subtext);
+    }
+
+    ul {
+      margin: 0 0 16px 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .callout {
+      margin: 18px 0 0;
+      background: #f8fbf8;
+      border: 1px solid #dfeee3;
+      border-left: 4px solid var(--primary);
+      padding: 16px 18px;
+      border-radius: 14px;
+      color: var(--text);
+    }
+
+    .warning {
+      background: #fffaf4;
+      border-color: #f3dfc5;
+      border-left-color: var(--accent);
+    }
+
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--subtext);
+    }
+
+    .footer a {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 20px 14px 40px;
+      }
+
+      .hero {
+        padding: 28px 20px 24px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .hero p,
+      p,
+      li {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 22px 20px 6px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="container">
+      <section class="hero">
+        <div class="brand">
+          <span class="brand-badge"></span>
+          AutoLedger
+        </div>
+        <h1>隐私政策</h1>
+        <p>
+          AutoLedger 非常重视您的隐私与数据安全。本页面说明我们会收集哪些信息、如何处理这些信息，以及您在使用本应用时可享有的相关权利。
+        </p>
+        <div class="meta">
+          <div class="meta-item">适用产品：AutoLedger</div>
+          <div class="meta-item">最后更新：2026-03-27</div>
+          <div class="meta-item">默认本地优先</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section">
+          <h2>一、我们是谁</h2>
+          <p>
+            AutoLedger 是一款面向个人用户的记账工具，核心功能包括截图识别、账单导入、自动分类、快捷指令一键记账与消费统计等。
+          </p>
+          <p class="muted">
+            本隐私政策适用于 AutoLedger iOS 应用及与该应用直接相关的服务页面。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>二、我们收集哪些信息</h2>
+          <p>
+            AutoLedger 默认不要求您注册账号，也不会主动收集您的姓名、手机号、身份证号、邮箱地址等个人身份信息。
+          </p>
+          <p>在您主动使用相关功能时，您可能向本应用提供以下信息：</p>
+          <ul>
+            <li>您主动导入的截图、照片或小票图像</li>
+            <li>图像中可能包含的账单文本信息，例如金额、商户、时间、支付渠道</li>
+            <li>您手动编辑或补充的账单备注、分类、来源信息</li>
+            <li>您主动使用快捷指令、分享扩展或剪贴板导入时提供的文本或图片内容</li>
+          </ul>
+
+          <div class="callout">
+            我们只在实现记账、识别、分类、展示和调试功能所必需的范围内处理数据，不会无关收集。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>三、我们如何处理您的数据</h2>
+          <p>
+            AutoLedger 采用<strong>本地优先</strong>的设计思路。默认情况下，您的截图、照片和账单数据会优先在您的设备本地完成处理与存储。
+          </p>
+          <ul>
+            <li>OCR 识别可在本地完成时，将优先在本地执行</li>
+            <li>账单解析、分类、去重、展示等逻辑默认在本地完成</li>
+            <li>账单记录默认存储于您的设备本地数据库中</li>
+          </ul>
+
+          <p>
+            在部分功能场景中，如您启用了基于第三方服务的识别、解析或 AI 能力，相关截图文本或图片内容可能会被发送给第三方服务用于完成该功能。
+          </p>
+
+          <div class="callout warning">
+            如果未来版本新增云同步、远程 AI 解析、账号系统或服务器存储，我们会同步更新本隐私政策，并在需要时通过应用内提示或更新说明告知您。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>四、我们如何使用这些信息</h2>
+          <p>我们仅会将相关信息用于以下目的：</p>
+          <ul>
+            <li>识别您主动导入的截图或照片中的账单内容</li>
+            <li>生成账单条目，包括金额、商户、时间、分类等信息</li>
+            <li>帮助您进行账单展示、搜索、统计、月报与趋势分析</li>
+            <li>支持快捷指令、分享扩展、拍照识别、剪贴板导入等功能</li>
+            <li>在您主动进入调试或回归页面时，展示 OCR 原文、解析结果与导入状态以便核查</li>
+            <li>改进应用稳定性、修复识别问题和提升产品体验</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>五、权限使用说明</h2>
+          <p>根据您所使用的功能，AutoLedger 可能会请求以下系统权限：</p>
+          <ul>
+            <li>
+              <strong>照片/相册权限</strong>：用于读取您主动选择的截图或照片，以识别账单内容。
+            </li>
+            <li>
+              <strong>相机权限</strong>：用于拍摄账单、小票或支付页面内容并进行识别。
+            </li>
+            <li>
+              <strong>通知权限</strong>：用于向您展示记账结果、提醒或相关状态反馈（如您主动开启）。
+            </li>
+            <li>
+              <strong>剪贴板访问</strong>：用于在您主动触发粘贴导入时读取剪贴板中的文本或图片内容。
+            </li>
+          </ul>
+
+          <p class="muted">
+            所有权限均仅在对应功能需要时使用，不会用于无关目的。您也可以随时在 iOS 系统设置中关闭相关权限。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>六、第三方服务说明</h2>
+          <p>
+            为实现部分识别、解析或智能能力，AutoLedger 在未来版本中可能接入第三方服务，例如 OCR 服务、AI 文本解析服务或云端模型服务。
+          </p>
+          <p>如接入相关第三方服务，我们将遵循以下原则：</p>
+          <ul>
+            <li>仅传输实现功能所必需的最小数据范围</li>
+            <li>不将相关数据用于广告、画像或无关营销用途</li>
+            <li>不出售您的个人数据</li>
+            <li>在功能上线时同步更新本隐私政策及应用内说明</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>七、数据存储与保留</h2>
+          <p>
+            您的账单数据默认保存在本地设备中。除非未来版本明确提供云同步功能并经您主动开启，否则我们不会将您的账单数据存储在开发者服务器。
+          </p>
+          <ul>
+            <li>本地数据的保留时长由您自行决定</li>
+            <li>您删除应用后，本地数据可能随应用一并删除</li>
+            <li>如未来支持导出、备份或云同步，相关规则将另行说明</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>八、数据安全</h2>
+          <p>
+            我们会采取合理措施保护您的信息安全，包括但不限于使用 iOS 系统安全机制、最小化数据处理范围、减少不必要的外部传输等。
+          </p>
+          <p>
+            但请您理解，任何网络传输或电子存储方式都无法保证绝对安全。如您对敏感财务信息有更高要求，建议您谨慎选择导入内容，并及时检查应用设置与系统权限。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>九、未成年人保护</h2>
+          <p>
+            AutoLedger 主要面向具有独立财务管理需求的用户设计。我们不会故意面向未满 14 周岁的未成年人提供服务或收集其个人信息。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>十、您的权利</h2>
+          <p>在适用法律允许的范围内，您可以：</p>
+          <ul>
+            <li>查看和管理您在本地保存的账单数据</li>
+            <li>删除您主动导入的账单信息</li>
+            <li>关闭照片、相机、通知等系统权限</li>
+            <li>停止使用相关功能或卸载应用</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>十一、隐私政策的更新</h2>
+          <p>
+            我们可能会根据产品功能变化、法律法规要求或业务调整更新本隐私政策。更新后的版本将在本页面发布，并自发布之日起生效。
+          </p>
+          <p>
+            如果更新涉及重大变更，我们将通过应用更新说明、应用内提示或其他合理方式提醒您。
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>十二、联系我们</h2>
+          <p>
+            如果您对本隐私政策有任何疑问、建议或投诉，可通过以下方式联系开发者：
+          </p>
+          <p>
+            网站：<a href="https://app.darkrio326.top/" target="_blank" rel="noopener noreferrer">https://app.darkrio326.top/</a>
+          </p>
+          <p class="muted">
+            如后续增加专门的支持邮箱或反馈渠道，我们会在本页面同步更新。
+          </p>
+        </div>
+      </section>
+
+      <div class="footer">
+        © 2026 AutoLedger · Privacy Policy
+      </div>
+    </div>
+  </main>
+</body>
+</html>
