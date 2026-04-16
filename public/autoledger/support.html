@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoLedger 技术支持</title>
+  <meta name="description" content="AutoLedger 技术支持页面，包含问题反馈、常见问题和联系信息。" />
+  <style>
+    :root {
+      --bg: #f6f2e9;
+      --card: rgba(255,255,255,.84);
+      --text: #1f1f1f;
+      --muted: #66685f;
+      --green: #4c8b68;
+      --line: rgba(31,31,31,.08);
+      --shadow: 0 16px 48px rgba(48, 43, 32, .10);
+      --radius: 22px;
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(76,139,104,.10), transparent 30%),
+        var(--bg);
+      line-height: 1.7;
+    }
+    a { color: #35664d; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 54px 0 18px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px;
+      background: rgba(76,139,104,.10); color: #35664d; font-weight: 600; font-size: 14px;
+    }
+    h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.08; margin: 18px 0 12px; }
+    .lead { color: var(--muted); font-size: 18px; margin: 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 28px 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(31,31,31,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .card h2 { margin: 0 0 12px; font-size: 22px; }
+    .card p, .card li { color: var(--muted); }
+    ul { margin: 0; padding-left: 20px; }
+    li + li { margin-top: 8px; }
+    .wide { margin-bottom: 18px; }
+    .contact {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 14px;
+      background: rgba(76,139,104,.10); color: #35664d; font-weight: 700;
+    }
+    footer { padding: 6px 0 52px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">AutoLedger 技术支持</div>
+      <h1>问题反馈、常见说明与联系入口</h1>
+      <p class="lead">如果你在使用 AutoLedger 时遇到识别错误、模型下载失败、快捷指令异常、导入问题或其他体验问题，可以先查看下方说明，也可以直接联系我们。</p>
+    </section>
+
+    <section class="card wide">
+      <h2>联系邮箱</h2>
+      <p>如需反馈问题、提交建议或说明审核测试情况，请通过邮箱联系：</p>
+      <p><a class="contact" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>常见问题</h2>
+        <ul>
+          <li><strong>识别结果不准确怎么办？</strong><br />你可以在 App 内查看并修改生成后的记录，后续也可通过分类、来源和商户别名管理进一步优化效果。</li>
+          <li><strong>为什么有些截图没有完全识别？</strong><br />不同支付界面、小票样式和截图内容差异较大，识别结果可能受截图清晰度、信息完整度和内容布局影响。</li>
+          <li><strong>快捷指令触发后没有看到结果？</strong><br />请确认快捷指令已正确授权，并检查 App 是否已完成首次配置与必要权限设置。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>模型与下载相关</h2>
+        <ul>
+          <li><strong>本地模型下载失败怎么办？</strong><br />请检查网络连接、存储空间以及当前版本是否支持该功能，然后重试下载。</li>
+          <li><strong>删除模型后会怎样？</strong><br />App 的基础功能仍可使用，但相关本地智能增强能力可能会受影响，需要重新下载后恢复。</li>
+          <li><strong>导入后直接记账还能修改吗？</strong><br />可以。记录生成后，仍可在 App 内查看、确认和手动修正。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>建议反馈时提供的信息</h2>
+        <ul>
+          <li>设备型号与系统版本</li>
+          <li>App 版本号</li>
+          <li>问题发生前的操作步骤</li>
+          <li>是否通过截图、拍照、剪切板或快捷指令触发</li>
+          <li>如方便，可附带脱敏后的界面截图</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>关于隐私</h2>
+        <ul>
+          <li>AutoLedger 以本地处理为核心，帮助你在设备上完成账单识别与整理。</li>
+          <li>生成后的记录仍可在 App 中查看、修改和校正。</li>
+          <li>如需单独的隐私政策页面，可在此页继续补充链接或说明。</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
