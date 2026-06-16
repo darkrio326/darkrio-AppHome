@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>darkrio Apps · Utility tools</title>
+  <meta name="description" content="darkrio 的应用产品入口：AutoLedger 与正在推进的实用工具。" />
+  <meta name="theme-color" content="#080b0a" />
+  <style>
+    :root {
+      --bg: #080b0a;
+      --surface: #101713;
+      --surface-2: #151f19;
+      --line: rgba(240, 248, 242, 0.12);
+      --text: #f4f8f5;
+      --muted: #9ca9a0;
+      --green: #6fc47a;
+      --green-strong: #97e6a0;
+      --amber: #f7b731;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #111a15 0%, var(--bg) 44%, #070907 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0 30px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 760;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      min-height: 72vh;
+      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
+      align-items: center;
+      gap: 46px;
+      padding: 20px 0 56px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.95;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      padding: 0 18px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 720;
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: var(--green);
+      color: #061108;
+      box-shadow: 0 18px 44px rgba(111, 196, 122, 0.15);
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16, 23, 19, 0.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .app-card {
+      padding: 28px;
+    }
+
+    .app-head {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .app-icon {
+      display: grid;
+      width: 72px;
+      height: 72px;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #266833, #72c77b);
+      color: #f5fff6;
+      font-size: 34px;
+      font-weight: 820;
+    }
+
+    .app-card h2 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .app-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .feature-list {
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-list li {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .more {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 0 0 72px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16, 23, 19, 0.58);
+      padding: 20px;
+    }
+
+    .mini h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .mini p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 12px;
+      }
+
+      .more {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="shell nav" aria-label="Primary navigation">
+    <a class="brand" href="/">darkrio Apps</a>
+    <div class="nav-links">
+      <a href="https://www.darkrio326.top">Home</a>
+      <a href="https://game.darkrio326.top">Games</a>
+      <a href="/autoledger/support.html">Support</a>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <h1>Apps</h1>
+        <p class="lead">
+          面向真实日常流程的 utility tools。先把一件事做到足够省心，再决定它是否值得长成一个产品线。
+        </p>
+        <div class="actions">
+          <a class="button primary" href="/autoledger/">Open AutoLedger →</a>
+          <a class="button" href="https://apps.apple.com/us/app/autoledger-%E4%B8%80%E9%94%AE%E8%AE%B0%E8%B4%A6/id6761892533?l=zh-Hans-CN" target="_blank" rel="noopener noreferrer">App Store</a>
+          <a class="button" href="https://testflight.apple.com/join/T3Wu6ngk" target="_blank" rel="noopener noreferrer">TestFlight</a>
+          <a class="button" href="/autoledger/privacy/">Privacy</a>
+        </div>
+      </div>
+
+      <article class="panel app-card">
+        <div class="app-head">
+          <div class="app-icon" aria-hidden="true">AL</div>
+          <div>
+            <h2>AutoLedger</h2>
+            <p>截图与快捷指令驱动的一键记账工具。按一下，就记好。</p>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>面向个人与小型经营场景的低摩擦记账入口。</li>
+          <li>保留支持与隐私页面，适合作为当前公开 App 样板。</li>
+          <li>已提供 App Store 正式页与 TestFlight 新版测试入口。</li>
+          <li>后续 AppHome 将承接更多收据、报表与自动化工具。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="more" aria-label="More app directions">
+      <article class="mini">
+        <h2>Receipt Reader</h2>
+        <p>从票据、截图和流水中提取结构化信息。</p>
+      </article>
+      <article class="mini">
+        <h2>CSV Cleaner</h2>
+        <p>把手工整理表格的重复动作做成小工具。</p>
+      </article>
+      <article class="mini">
+        <h2>Workflow Helpers</h2>
+        <p>服务个人项目推进、复盘和发布检查的小型自动化。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="shell">© 2026 darkrio · Apps that reduce friction</footer>
+</body>
+</html>
