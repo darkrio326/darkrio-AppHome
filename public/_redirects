@@ -1,0 +1,6 @@
+/autoledger/privacy https://getautoledger.app/privacy/ 301
+/autoledger/support.html https://getautoledger.app/support 301
+/autoledger/support https://getautoledger.app/support 301
+/autoledger https://getautoledger.app/ 301
+/autoledger/privacy/* https://getautoledger.app/privacy/:splat 301
+/autoledger/* https://getautoledger.app/:splat 301

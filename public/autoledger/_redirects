@@ -1,0 +1,7 @@
+/autoledger/privacy /privacy/ 301
+/autoledger/support.html /support 301
+/autoledger/support /support 301
+/support.html /support 301
+/autoledger / 301
+/autoledger/privacy/* /privacy/:splat 301
+/autoledger/* /:splat 301
