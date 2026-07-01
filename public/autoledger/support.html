@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-Hans">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,69 +57,107 @@
       padding: 12px 16px; border-radius: 14px;
       background: rgba(76,139,104,.10); color: #35664d; font-weight: 700;
     }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding-top: 22px;
+    }
+    .brand-link { font-weight: 800; color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .nav-actions a { font-weight: 700; }
+    .locale-switch {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      color: var(--text);
+      padding: 7px 10px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+    }
     footer { padding: 6px 0 52px; color: var(--muted); font-size: 14px; }
-    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <nav class="topbar" aria-label="Primary navigation">
+      <a class="brand-link" href="/">AutoLedger</a>
+      <div class="nav-actions">
+        <a href="/" data-i18n="nav.home">首页</a>
+        <a href="/privacy/" data-i18n="nav.privacy">隐私政策</a>
+        <select class="locale-switch" data-locale-select aria-label="Language">
+          <option value="zh-Hans">简中</option>
+          <option value="zh-Hant">繁中</option>
+          <option value="en">EN</option>
+          <option value="ja">日本語</option>
+        </select>
+      </div>
+    </nav>
     <section class="hero">
-      <div class="eyebrow">AutoLedger 技术支持</div>
-      <h1>问题反馈、常见说明与联系入口</h1>
-      <p class="lead">如果你在使用 AutoLedger 时遇到识别错误、模型下载失败、快捷指令异常、导入问题或其他体验问题，可以先查看下方说明，也可以直接联系我们。</p>
+      <div class="eyebrow" data-i18n="support.eyebrow">AutoLedger 技术支持</div>
+      <h1 data-i18n="support.title">问题反馈、常见说明与联系入口</h1>
+      <p class="lead" data-i18n="support.lead">如果你在使用 AutoLedger 时遇到识别错误、模型下载失败、快捷指令异常、导入问题或其他体验问题，可以先查看下方说明，也可以直接联系我们。</p>
     </section>
 
     <section class="card wide">
-      <h2>联系邮箱</h2>
-      <p>如需反馈问题、提交建议或说明审核测试情况，请通过邮箱联系：</p>
+      <h2 data-i18n="support.contactTitle">联系邮箱</h2>
+      <p data-i18n="support.contactBody">如需反馈问题、提交建议或说明审核测试情况，请通过邮箱联系：</p>
       <p><a class="contact" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
     </section>
 
     <section class="grid">
       <article class="card">
-        <h2>常见问题</h2>
+        <h2 data-i18n="support.faqTitle">常见问题</h2>
         <ul>
-          <li><strong>识别结果不准确怎么办？</strong><br />你可以在 App 内查看并修改生成后的记录，后续也可通过分类、来源和商户别名管理进一步优化效果。</li>
-          <li><strong>为什么有些截图没有完全识别？</strong><br />不同支付界面、小票样式和截图内容差异较大，识别结果可能受截图清晰度、信息完整度和内容布局影响。</li>
-          <li><strong>快捷指令触发后没有看到结果？</strong><br />请确认快捷指令已正确授权，并检查 App 是否已完成首次配置与必要权限设置。</li>
+          <li data-i18n-html="support.faq1"><strong>识别结果不准确怎么办？</strong><br />你可以在 App 内查看并修改生成后的记录，后续也可通过分类、来源和商户别名管理进一步优化效果。</li>
+          <li data-i18n-html="support.faq2"><strong>为什么有些截图没有完全识别？</strong><br />不同支付界面、小票样式和截图内容差异较大，识别结果可能受截图清晰度、信息完整度和内容布局影响。</li>
+          <li data-i18n-html="support.faq3"><strong>快捷指令触发后没有看到结果？</strong><br />请确认快捷指令已正确授权，并检查 App 是否已完成首次配置与必要权限设置。</li>
         </ul>
       </article>
 
       <article class="card">
-        <h2>模型与下载相关</h2>
+        <h2 data-i18n="support.modelTitle">模型与下载相关</h2>
         <ul>
-          <li><strong>本地模型下载失败怎么办？</strong><br />请检查网络连接、存储空间以及当前版本是否支持该功能，然后重试下载。</li>
-          <li><strong>删除模型后会怎样？</strong><br />App 的基础功能仍可使用，但相关本地智能增强能力可能会受影响，需要重新下载后恢复。</li>
-          <li><strong>导入后直接记账还能修改吗？</strong><br />可以。记录生成后，仍可在 App 内查看、确认和手动修正。</li>
+          <li data-i18n-html="support.model1"><strong>本地模型下载失败怎么办？</strong><br />请检查网络连接、存储空间以及当前版本是否支持该功能，然后重试下载。</li>
+          <li data-i18n-html="support.model2"><strong>删除模型后会怎样？</strong><br />App 的基础功能仍可使用，但相关本地智能增强能力可能会受影响，需要重新下载后恢复。</li>
+          <li data-i18n-html="support.model3"><strong>导入后直接记账还能修改吗？</strong><br />可以。记录生成后，仍可在 App 内查看、确认和手动修正。</li>
         </ul>
       </article>
 
       <article class="card">
-        <h2>建议反馈时提供的信息</h2>
+        <h2 data-i18n="support.feedbackTitle">建议反馈时提供的信息</h2>
         <ul>
-          <li>设备型号与系统版本</li>
-          <li>App 版本号</li>
-          <li>问题发生前的操作步骤</li>
-          <li>是否通过截图、拍照、剪切板或快捷指令触发</li>
-          <li>如方便，可附带脱敏后的界面截图</li>
+          <li data-i18n="support.feedback1">设备型号与系统版本</li>
+          <li data-i18n="support.feedback2">App 版本号</li>
+          <li data-i18n="support.feedback3">问题发生前的操作步骤</li>
+          <li data-i18n="support.feedback4">是否通过截图、拍照、剪切板或快捷指令触发</li>
+          <li data-i18n="support.feedback5">如方便，可附带脱敏后的界面截图</li>
         </ul>
       </article>
 
       <article class="card">
-        <h2>关于隐私</h2>
+        <h2 data-i18n="support.privacyTitle">关于隐私</h2>
         <ul>
-          <li>AutoLedger 以本地处理为核心，帮助你在设备上完成账单识别与整理。</li>
+          <li data-i18n="support.privacyBody">AutoLedger 以本地处理为核心，帮助你在设备上完成账单识别与整理。</li>
         </ul>
       </article>
     </section>
 
       <footer class="footer">
         <div class="footer-links">
-          <a href="/privacy/">隐私政策</a>
+          <a href="/privacy/" data-i18n="nav.privacy">隐私政策</a>
           <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
         </div>
         <div>© 2026 darkrio Studio</div>
       </footer>
   </main>
+  <script src="/i18n.js"></script>
+  <script>window.AutoLedgerI18n.init("support")</script>
 </body>
 </html>
