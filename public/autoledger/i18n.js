@@ -102,117 +102,156 @@
       privacy: {
         heading: "隐私政策",
         intro:
-          "AutoLedger 非常重视您的隐私与数据安全。本页面说明我们会收集哪些信息、如何处理这些信息，以及您在使用本应用时可享有的相关权利。",
+          "AutoLedger 以本地优先为核心设计，并为 AutoLedger Pro 提供可选的自动化能力。本页面说明我们会处理哪些信息、为什么处理，以及您可以如何管理这些信息。",
         product: "适用产品：AutoLedger",
-        updated: "最后更新：2026-03-27",
-        localFirst: "默认本地优先",
+        updated: "最后更新：2026-07-01",
+        localFirst: "本地优先，云端能力可选",
         footer: "© 2026 AutoLedger · 隐私政策",
         sections: [
           {
             title: "一、我们是谁",
             body: [
-              "AutoLedger 是一款面向个人用户的记账工具，核心功能包括截图识别、账单导入、自动分类、快捷指令一键记账与消费统计等。",
-              "本隐私政策适用于 AutoLedger iOS 应用及与该应用直接相关的服务页面。",
+              "AutoLedger 是一款面向个人用户的记账应用，功能包括截图识别、拍照识别、一句话记账、酒店水单导入、多账本、订阅管理、月报统计和 AutoLedger Pro 自动化能力。",
+              "本隐私政策适用于 AutoLedger App、相关 Apple 平台版本，以及 getautoledger.app 上与 AutoLedger 直接相关的服务页面。",
             ],
           },
           {
-            title: "二、我们收集哪些信息",
+            title: "二、我们处理哪些信息",
             body: [
-              "AutoLedger 默认不要求您注册账号，也不会主动收集您的姓名、手机号、身份证号、邮箱地址等个人身份信息。",
-              "在您主动使用相关功能时，您可能向本应用提供以下信息：",
+              "AutoLedger 默认不要求您注册账号，也不会主动收集您的姓名、手机号、身份证号等个人身份信息。",
+              "根据您主动使用的功能，AutoLedger 可能处理以下信息：",
             ],
             list: [
-              "您主动导入的截图、照片或小票图像",
-              "图像中可能包含的账单文本信息，例如金额、商户、时间、支付渠道",
-              "您手动编辑或补充的账单备注、分类、来源信息",
-              "您主动使用快捷指令、分享扩展或剪贴板导入时提供的文本或图片内容",
+              "您主动导入的截图、照片、PDF、小票或酒店水单附件",
+              "图片或 PDF 中可能包含的账单文本，例如金额、商户、酒店名称、入住日期、时间、支付渠道和币种",
+              "您手动新增或编辑的账单、酒店消费、订阅、账本、分类、商户别名、备注和标签",
+              "您通过快捷指令、分享扩展、剪贴板、语音输入或 App Intents 提供的文本或图片",
+              "您选择启用同步、备份、Pro 订阅或云端水单收件箱时所需的最小状态信息",
             ],
-            callout: "我们只在实现记账、识别、分类、展示和调试功能所必需的范围内处理数据，不会无关收集。",
+            callout: "我们只在记账、识别、整理、同步、订阅校验、云端候选下载、故障排查和安全防滥用所必需的范围内处理信息，不出售个人数据，也不用于广告画像。",
           },
           {
-            title: "三、我们如何处理您的数据",
+            title: "三、本地处理、iCloud 与设备同步",
             body: [
-              "AutoLedger 采用<strong>本地优先</strong>的设计思路。默认情况下，您的截图、照片和账单数据会优先在您的设备本地完成处理与存储。",
+              "AutoLedger 采用<strong>本地优先</strong>设计。默认情况下，账单识别、解析、分类、展示和编辑会优先在您的设备上完成，账本数据也优先保存在本机。",
             ],
             list: [
-              "OCR 识别可在本地完成时，将优先在本地执行",
-              "账单解析、分类、去重、展示等逻辑默认在本地完成",
-              "账单记录默认存储于您的设备本地数据库中",
+              "OCR、账单解析、分类、去重和月报统计默认在设备本地执行",
+              "邮箱授权码或应用专用密码仅保存在本机 Keychain，不上传到 AutoLedger 服务器",
+              "如果您启用 iCloud 同步或备份，相关数据会通过您的 Apple iCloud 账号同步，开发者无法直接读取您的 iCloud 内容",
+              "如果您关闭同步或删除本地数据，App 将按系统能力和用户操作停止新的同步或移除本机副本",
             ],
-            after: [
-              "在部分功能场景中，如您启用了基于第三方服务的识别、解析或 AI 能力，相关截图文本或图片内容可能会被发送给第三方服务用于完成该功能。",
+          },
+          {
+            title: "四、AutoLedger Pro 与订阅校验",
+            body: [
+              "AutoLedger Pro 通过 App Store 提供订阅。购买、续订、退款、账单和付款方式由 Apple 处理，AutoLedger 不接触您的银行卡号或完整付款信息。",
+              "为了判断 Pro 是否有效，App 会读取 StoreKit 提供的本机订阅状态；在使用云端水单收件箱等服务端能力时，App 可能会把 Apple 签名的交易凭证发送给 AutoLedger Worker，由 Worker 通过 App Store Server API 校验商品 ID、Bundle ID、撤销状态和到期时间。",
+            ],
+            list: [
+              "服务端只保存必要的订阅状态、到期时间和由原始交易号生成的哈希标识",
+              "Pro 到期后不会锁住您已经保存的历史账单、酒店消费、PDF 或基础导出能力",
+              "当前版本不使用 App Store Server Notifications 主动接收订阅生命周期事件；后续版本接入时会继续遵循最小化和哈希化原则",
+            ],
+          },
+          {
+            title: "五、本地邮箱扫描与云端水单收件箱",
+            body: [
+              "AutoLedger 提供两种酒店水单整理路径：本地邮箱扫描和 AutoLedger Pro 云端专属水单收件箱。",
+            ],
+            list: [
+              "本地邮箱扫描在您的设备上连接您配置的邮箱，只查找可能相关的酒店水单邮件和附件；邮箱授权码或应用专用密码仅保存在本机 Keychain，不上传到服务器",
+              "云端专属水单收件箱只处理投递到 folio+token@getautoledger.app 这类专属地址的邮件，不登录您的 QQ、Gmail、Outlook、iCloud Mail 或其它个人邮箱",
+              "云端 Worker 会提取 PDF 附件或必要的正文水单内容，保存候选 PDF 和经过精简的候选元数据，以便 App 下载后在设备上复核",
+              "云端候选不会自动写入正式账本；下载到 App 后仍需您确认，才会生成酒店消费和账单记录",
+              "云端通知使用 APNs 发送通用提醒和 deep link，不在推送内容中包含酒店名、金额、订单号、附件文件名或收件箱 token",
             ],
             warning:
-              "如果未来版本新增云同步、远程 AI 解析、账号系统或服务器存储，我们会同步更新本隐私政策，并在需要时通过应用内提示或更新说明告知您。",
+              "请只将需要 AutoLedger 处理的酒店水单邮件转发到专属地址；不匹配专属地址的邮件不会作为您的水单候选处理。",
           },
           {
-            title: "四、我们如何使用这些信息",
+            title: "六、我们如何使用这些信息",
             body: ["我们仅会将相关信息用于以下目的："],
             list: [
-              "识别您主动导入的截图或照片中的账单内容",
-              "生成账单条目，包括金额、商户、时间、分类等信息",
-              "帮助您进行账单展示、搜索、统计、月报与趋势分析",
-              "支持快捷指令、分享扩展、拍照识别、剪贴板导入等功能",
-              "在您主动进入调试或回归页面时，展示 OCR 原文、解析结果与导入状态以便核查",
-              "改进应用稳定性、修复识别问题和提升产品体验",
+              "识别您主动导入或转发的账单、截图、照片、PDF 或酒店水单内容",
+              "生成待确认账单、酒店消费、订阅或月报统计，并支持编辑、搜索、导出和备份",
+              "提供本地邮箱扫描、云端水单候选、批量候选整理、去重和其它 Pro 自动化能力",
+              "完成 App Store 订阅校验、服务端 token 发放、到期控制和安全防滥用",
+              "发送您主动启用的通知、状态反馈或云端候选提醒",
+              "排查故障、改进识别准确性和提升产品稳定性",
             ],
           },
           {
-            title: "五、权限使用说明",
+            title: "七、权限使用说明",
             body: ["根据您所使用的功能，AutoLedger 可能会请求以下系统权限："],
             list: [
-              "<strong>照片/相册权限</strong>：用于读取您主动选择的截图或照片，以识别账单内容。",
-              "<strong>相机权限</strong>：用于拍摄账单、小票或支付页面内容并进行识别。",
-              "<strong>通知权限</strong>：用于向您展示记账结果、提醒或相关状态反馈（如您主动开启）。",
-              "<strong>剪贴板访问</strong>：用于在您主动触发粘贴导入时读取剪贴板中的文本或图片内容。",
+              "<strong>照片/相册权限</strong>：读取您主动选择的截图或照片，用于账单识别。",
+              "<strong>相机权限</strong>：拍摄账单、小票、票据或支付页面用于识别。",
+              "<strong>麦克风/语音输入</strong>：在您主动使用语音或一句话记账时接收输入。",
+              "<strong>通知权限</strong>：展示记账结果、提醒、订阅提示或云端候选状态。",
+              "<strong>剪贴板访问</strong>：仅在您主动触发粘贴导入时读取文本或图片。",
+              "<strong>iCloud</strong>：在您启用同步或备份时，通过 Apple iCloud 保存和同步相关数据。",
             ],
-            after: ["所有权限均仅在对应功能需要时使用，不会用于无关目的。您也可以随时在 iOS 系统设置中关闭相关权限。"],
+            after: ["所有权限均仅在对应功能需要时使用。您可以随时在系统设置中关闭相关权限。"],
           },
           {
-            title: "六、第三方服务说明",
+            title: "八、第三方与基础设施服务",
             body: [
-              "为实现部分识别、解析或智能能力，AutoLedger 在未来版本中可能接入第三方服务，例如 OCR 服务、AI 文本解析服务或云端模型服务。",
-              "如接入相关第三方服务，我们将遵循以下原则：",
+              "AutoLedger 会尽量在设备本地完成处理。某些您主动启用的能力需要依赖 Apple、Cloudflare 或您配置的外部服务。",
             ],
             list: [
-              "仅传输实现功能所必需的最小数据范围",
-              "不将相关数据用于广告、画像或无关营销用途",
-              "不出售您的个人数据",
-              "在功能上线时同步更新本隐私政策及应用内说明",
+              "Apple：App Store 订阅、StoreKit 校验、iCloud 同步 / 备份、APNs 推送和系统权限",
+              "Cloudflare：getautoledger.app 网站托管、Email Routing、Worker、D1、R2 和 Queue，用于云端水单收件箱候选处理",
+              "邮箱服务商：仅在您配置本地邮箱扫描时，由您的设备连接相应邮箱服务",
+              "可选外部识别或 AI 服务：仅在您主动配置或开启相关能力时使用，并以完成该功能所需的最小数据为限",
             ],
           },
           {
-            title: "七、数据存储与保留",
-            body: ["您的账单数据默认保存在本地设备中。除非未来版本明确提供云同步功能并经您主动开启，否则我们不会将您的账单数据存储在开发者服务器。"],
-            list: ["本地数据的保留时长由您自行决定", "您删除应用后，本地数据可能随应用一并删除", "如未来支持导出、备份或云同步，相关规则将另行说明"],
-          },
-          {
-            title: "八、数据安全",
+            title: "九、数据存储、保留与删除",
             body: [
-              "我们会采取合理措施保护您的信息安全，包括但不限于使用 iOS 系统安全机制、最小化数据处理范围、减少不必要的外部传输等。",
-              "但请您理解，任何网络传输或电子存储方式都无法保证绝对安全。如您对敏感财务信息有更高要求，建议您谨慎选择导入内容，并及时检查应用设置与系统权限。",
+              "本地账本、酒店消费、订阅和设置由您在设备上管理。云端水单收件箱只为提供候选下载和复核而保存必要材料。",
+            ],
+            list: [
+              "本地数据的保留时长由您决定；删除 App 或数据可能会移除本机副本",
+              "iCloud 数据由您的 Apple 账号和系统设置管理",
+              "本地邮箱授权可在 App 中移除，移除后会停止新的邮箱扫描并删除本机保存的授权码",
+              "云端水单候选可在 App 中标记为已处理或删除；候选 PDF 和元数据会按用户操作、订阅状态或服务端清理策略删除或过期",
+              "收件箱 raw token 只返回给 App 一次，服务端保存的是 token 哈希；轮换地址后旧 token 会被标记为不可继续使用",
             ],
           },
           {
-            title: "九、未成年人保护",
+            title: "十、数据安全",
+            body: [
+              "我们会采取合理措施保护您的信息安全，包括使用 iOS Keychain、系统权限控制、哈希化 token、最小化云端元数据、服务端订阅校验、访问 token 和传输加密等。",
+              "但任何网络传输或电子存储都无法保证绝对安全。如您处理高度敏感的财务信息，请谨慎选择导入或转发的内容，并定期检查 App 设置和系统权限。",
+            ],
+          },
+          {
+            title: "十一、未成年人保护",
             body: ["AutoLedger 主要面向具有独立财务管理需求的用户设计。我们不会故意面向未满 14 周岁的未成年人提供服务或收集其个人信息。"],
           },
           {
-            title: "十、您的权利",
+            title: "十二、您的选择与权利",
             body: ["在适用法律允许的范围内，您可以："],
-            list: ["查看和管理您在本地保存的账单数据", "删除您主动导入的账单信息", "关闭照片、相机、通知等系统权限", "停止使用相关功能或卸载应用"],
-          },
-          {
-            title: "十一、隐私政策的更新",
-            body: [
-              "我们可能会根据产品功能变化、法律法规要求或业务调整更新本隐私政策。更新后的版本将在本页面发布，并自发布之日起生效。",
-              "如果更新涉及重大变更，我们将通过应用更新说明、应用内提示或其他合理方式提醒您。",
+            list: [
+              "查看、编辑、导出或删除您在本地保存的账单和酒店消费记录",
+              "关闭照片、相机、通知、麦克风、iCloud 等系统权限",
+              "移除本机邮箱授权、轮换云端专属收件箱地址或停止转发邮件",
+              "通过 App Store 管理、取消或恢复 Pro 订阅",
+              "停止使用相关功能或卸载 App",
             ],
           },
           {
-            title: "十二、联系我们",
+            title: "十三、隐私政策的更新",
             body: [
-              '如果您对本隐私政策有任何疑问、建议或投诉，可通过以下方式联系开发者：',
+              "我们可能会根据产品功能、法律法规或服务配置变化更新本隐私政策。更新后的版本将在本页面发布，并自发布之日起生效。",
+              "如果更新涉及重大变更，我们会通过应用更新说明、应用内提示或其他合理方式提醒您。",
+            ],
+          },
+          {
+            title: "十四、联系我们",
+            body: [
+              "如果您对本隐私政策有任何疑问、建议或投诉，可通过以下方式联系开发者：",
               '网站：<a href="https://getautoledger.app/" target="_blank" rel="noopener noreferrer">https://getautoledger.app/</a>',
               "如后续增加专门的支持邮箱或反馈渠道，我们会在本页面同步更新。",
             ],
@@ -478,58 +517,326 @@
   messages["zh-Hant"].privacy = transformPrivacy(messages["zh-Hans"].privacy, {
     heading: "隱私政策",
     intro:
-      "AutoLedger 非常重視您的隱私與資料安全。本頁面說明我們會收集哪些資訊、如何處理這些資訊，以及您在使用本應用時可享有的相關權利。",
+      "AutoLedger 以本機優先為核心設計，並為 AutoLedger Pro 提供可選的自動化能力。本頁面說明我們會處理哪些資訊、為什麼處理，以及您可以如何管理這些資訊。",
     product: "適用產品：AutoLedger",
-    updated: "最後更新：2026-03-27",
-    localFirst: "預設本機優先",
+    updated: "最後更新：2026-07-01",
+    localFirst: "本機優先，雲端能力可選",
     footer: "© 2026 AutoLedger · 隱私政策",
   });
 
   messages.en.privacy = {
     heading: "Privacy Policy",
     intro:
-      "AutoLedger takes privacy and data security seriously. This page explains what information may be processed, how it is handled, and what choices you have when using the app.",
+      "AutoLedger is designed to be local-first and offers optional automation through AutoLedger Pro. This page explains what information may be processed, why it is processed, and how you can manage it.",
     product: "Product: AutoLedger",
-    updated: "Last updated: 2026-03-27",
-    localFirst: "Local-first by default",
+    updated: "Last updated: 2026-07-01",
+    localFirst: "Local-first, optional cloud automation",
     footer: "© 2026 AutoLedger · Privacy Policy",
     sections: [
-      { title: "1. Who we are", body: ["AutoLedger is a personal ledger app with screenshot recognition, bill import, automatic categorization, Shortcut-based one-tap logging, and spending summaries.", "This policy applies to the AutoLedger iOS app and service pages directly related to the app."] },
-      { title: "2. What information we process", body: ["AutoLedger does not require an account by default and does not actively collect identity information such as your name, phone number, government ID, or email address.", "When you choose to use certain features, you may provide:"], list: ["Screenshots, photos, or receipt images you import", "Bill text that may appear in those images, such as amount, merchant, time, and payment channel", "Notes, categories, or source information that you edit or add manually", "Text or images provided when you use Shortcuts, share extensions, or clipboard import"], callout: "We process data only as needed for logging, recognition, categorization, display, and debugging. We do not collect unrelated data." },
-      { title: "3. How we process your data", body: ["AutoLedger is designed to be <strong>local-first</strong>. By default, screenshots, photos, and ledger data are processed and stored on your device first."], list: ["OCR runs locally when local recognition is available", "Parsing, categorization, deduplication, and display logic are handled locally by default", "Ledger records are stored in your device's local database by default"], after: ["If you enable features backed by third-party recognition, parsing, or AI services, related screenshot text or image content may be sent to those services to complete the feature."], warning: "If future versions add cloud sync, remote AI parsing, accounts, or server storage, we will update this policy and notify you through app prompts or release notes when needed." },
-      { title: "4. How we use this information", body: ["Information is used only for:"], list: ["Recognizing bill content in screenshots or photos you import", "Creating ledger entries with amount, merchant, time, category, and related fields", "Showing, searching, summarizing, and analyzing your records", "Supporting Shortcuts, share extensions, camera recognition, and clipboard import", "Showing OCR text, parsing results, and import status when you open debug or regression pages", "Improving stability, fixing recognition issues, and improving product experience"] },
-      { title: "5. Permissions", body: ["Depending on the features you use, AutoLedger may request:"], list: ["<strong>Photos access</strong>: to read screenshots or photos you select for bill recognition.", "<strong>Camera access</strong>: to capture bills, receipts, or payment pages for recognition.", "<strong>Notifications</strong>: to show results, reminders, or status feedback if you enable them.", "<strong>Clipboard access</strong>: to read text or images when you actively trigger clipboard import."], after: ["Permissions are used only when needed for the corresponding feature. You can disable them in iOS Settings at any time."] },
-      { title: "6. Third-party services", body: ["Future versions may integrate third-party services such as OCR, AI text parsing, or cloud model services for selected recognition or intelligence features.", "If such services are used, we will:"], list: ["Transmit only the minimum data required for the feature", "Not use the data for advertising, profiling, or unrelated marketing", "Not sell your personal data", "Update this policy and in-app explanations when the feature launches"] },
-      { title: "7. Storage and retention", body: ["Your ledger data is stored locally by default. Unless a future cloud sync feature is clearly provided and you actively enable it, we will not store your ledger data on developer servers."], list: ["Local retention is controlled by you", "Deleting the app may also delete local data", "If export, backup, or cloud sync is added later, the relevant rules will be explained separately"] },
-      { title: "8. Data security", body: ["We take reasonable measures to protect your information, including iOS security mechanisms, minimizing the scope of processing, and reducing unnecessary external transfer.", "No network transmission or electronic storage method can be guaranteed absolutely secure. If your financial data is highly sensitive, choose imported content carefully and review app settings and system permissions."] },
-      { title: "9. Children", body: ["AutoLedger is intended for users with independent personal finance needs. We do not knowingly provide services to, or collect personal information from, children under 14."] },
-      { title: "10. Your choices", body: ["Where permitted by law, you can:"], list: ["View and manage locally stored ledger data", "Delete bill information you imported", "Disable Photos, Camera, Notifications, and other system permissions", "Stop using related features or uninstall the app"] },
-      { title: "11. Updates to this policy", body: ["We may update this policy as product features, legal requirements, or business needs change. Updated versions will be published on this page and become effective on publication.", "For material changes, we will notify you through release notes, in-app prompts, or other reasonable methods."] },
-      { title: "12. Contact", body: ['If you have questions, suggestions, or complaints about this policy, contact the developer:', 'Website: <a href="https://getautoledger.app/" target="_blank" rel="noopener noreferrer">https://getautoledger.app/</a>', "If dedicated support channels are added later, we will update this page."] },
+      {
+        title: "1. Who we are",
+        body: [
+          "AutoLedger is a personal ledger app for screenshot recognition, camera recognition, quick text entry, hotel folio import, multiple ledgers, subscription tracking, monthly reports, and AutoLedger Pro automation.",
+          "This policy applies to the AutoLedger app, related Apple platform versions, and service pages directly related to AutoLedger on getautoledger.app.",
+        ],
+      },
+      {
+        title: "2. Information we process",
+        body: [
+          "AutoLedger does not require an account by default and does not actively collect identity information such as your name, phone number, or government ID.",
+          "Depending on the features you choose to use, AutoLedger may process:",
+        ],
+        list: [
+          "Screenshots, photos, PDFs, receipts, or hotel folio attachments you import",
+          "Bill text that may appear in those files, such as amount, merchant, hotel name, stay dates, time, payment channel, and currency",
+          "Ledger entries, hotel stays, subscriptions, ledgers, categories, merchant aliases, notes, and tags you add or edit",
+          "Text or images you provide through Shortcuts, share extensions, clipboard import, voice input, or App Intents",
+          "Minimal status information needed when you enable sync, backup, Pro subscription features, or the cloud hotel folio inbox",
+        ],
+        callout:
+          "We process information only as needed for logging, recognition, organization, sync, subscription verification, cloud candidate download, troubleshooting, and abuse prevention. We do not sell personal data or use it for advertising profiles.",
+      },
+      {
+        title: "3. Local processing, iCloud, and device sync",
+        body: [
+          "AutoLedger is designed to be <strong>local-first</strong>. By default, recognition, parsing, categorization, display, and editing run on your device first, and ledger data is stored locally first.",
+        ],
+        list: [
+          "OCR, parsing, categorization, deduplication, and monthly reports run locally by default",
+          "Email app passwords or authorization codes are stored only in the local Keychain and are not uploaded to AutoLedger servers",
+          "If you enable iCloud sync or backup, related data syncs through your Apple iCloud account; the developer cannot directly read your iCloud content",
+          "If you turn off sync or delete local data, the app follows system capabilities and your action to stop new syncs or remove local copies",
+        ],
+      },
+      {
+        title: "4. AutoLedger Pro and subscription verification",
+        body: [
+          "AutoLedger Pro is offered through App Store subscriptions. Purchases, renewals, refunds, billing, and payment methods are handled by Apple. AutoLedger does not receive your card number or full payment details.",
+          "To determine whether Pro is active, the app reads StoreKit entitlement status on your device. When you use server-backed features such as the cloud hotel folio inbox, the app may send Apple's signed transaction information to the AutoLedger Worker, which verifies product ID, bundle ID, revocation status, and expiration date through App Store Server API.",
+        ],
+        list: [
+          "The server stores only the necessary subscription status, expiration time, and a hashed identifier derived from the original transaction ID",
+          "When Pro expires, your saved historical ledger data, hotel stays, PDFs, and basic export features remain accessible",
+          "The current version does not use App Store Server Notifications for proactive subscription lifecycle events; if added later, the same minimization and hashing principles will apply",
+        ],
+      },
+      {
+        title: "5. Local email scan and cloud hotel folio inbox",
+        body: [
+          "AutoLedger provides two hotel folio workflows: local email scanning and the AutoLedger Pro cloud hotel folio inbox.",
+        ],
+        list: [
+          "Local email scanning connects to the mailbox you configure on your device and searches for likely hotel folio messages and attachments; email app passwords or authorization codes stay in the local Keychain and are not uploaded to servers",
+          "The cloud hotel folio inbox only processes mail delivered to a dedicated address such as folio+token@getautoledger.app. It does not log in to your QQ, Gmail, Outlook, iCloud Mail, or other personal mailbox",
+          "The cloud Worker extracts PDF attachments or necessary body folio content, stores candidate PDFs and reduced candidate metadata so the app can download and review them",
+          "Cloud candidates are never automatically written to the official ledger. After download, you still review and confirm them in the app before a hotel stay or ledger entry is created",
+          "APNs notifications use a generic message and deep link. They do not include hotel name, amount, order number, attachment filename, or inbox token",
+        ],
+        warning:
+          "Forward only the hotel folio emails you want AutoLedger to process to your dedicated address. Unmatched mail is not treated as your hotel folio candidate.",
+      },
+      {
+        title: "6. How we use information",
+        body: ["Information is used only to:"],
+        list: [
+          "Recognize bills, screenshots, photos, PDFs, or hotel folio content you import or forward",
+          "Create pending entries, hotel stays, subscriptions, monthly summaries, and related review screens",
+          "Provide local email scanning, cloud folio candidates, batch candidate organization, deduplication, and other Pro automation",
+          "Verify App Store subscriptions, issue service tokens, enforce expiration, and prevent abuse",
+          "Send notifications, status feedback, or cloud candidate reminders when you enable them",
+          "Troubleshoot issues, improve recognition quality, and improve stability",
+        ],
+      },
+      {
+        title: "7. Permissions",
+        body: ["Depending on the features you use, AutoLedger may request:"],
+        list: [
+          "<strong>Photos access</strong>: to read screenshots or photos you select for bill recognition.",
+          "<strong>Camera access</strong>: to capture receipts, bills, tickets, or payment pages.",
+          "<strong>Microphone / voice input</strong>: to receive input when you actively use voice or one-sentence logging.",
+          "<strong>Notifications</strong>: to show results, reminders, subscription notices, or cloud candidate status.",
+          "<strong>Clipboard access</strong>: to read text or images only when you actively trigger clipboard import.",
+          "<strong>iCloud</strong>: to save and sync related data through Apple iCloud when you enable sync or backup.",
+        ],
+        after: ["Permissions are used only when needed for the corresponding feature. You can disable them in system settings at any time."],
+      },
+      {
+        title: "8. Third-party and infrastructure services",
+        body: [
+          "AutoLedger tries to process data locally whenever possible. Some features you choose to enable depend on Apple, Cloudflare, or external services you configure.",
+        ],
+        list: [
+          "Apple: App Store subscriptions, StoreKit verification, iCloud sync / backup, APNs notifications, and system permissions",
+          "Cloudflare: getautoledger.app hosting, Email Routing, Workers, D1, R2, and Queues for the cloud hotel folio inbox",
+          "Email providers: only when you configure local email scanning, your device connects to the relevant mailbox provider",
+          "Optional external recognition or AI services: only when you configure or enable such features, limited to the minimum data needed for that feature",
+        ],
+      },
+      {
+        title: "9. Storage, retention, and deletion",
+        body: [
+          "You manage local ledger data, hotel stays, subscriptions, and settings on your device. The cloud hotel folio inbox stores only the materials needed to provide candidate download and review.",
+        ],
+        list: [
+          "Local data retention is controlled by you; deleting the app or data may remove local copies",
+          "iCloud data is managed through your Apple account and system settings",
+          "Local email authorization can be removed in the app, which stops new scans and removes the locally stored credential",
+          "Cloud folio candidates can be marked processed or deleted in the app; candidate PDFs and metadata are deleted or expired according to your action, subscription state, or service cleanup rules",
+          "The raw inbox token is returned to the app only once. The server stores a token hash, and old tokens are disabled when you rotate the address",
+        ],
+      },
+      {
+        title: "10. Data security",
+        body: [
+          "We take reasonable measures to protect your information, including iOS Keychain, system permission controls, token hashing, minimized cloud metadata, server-side subscription verification, access tokens, and encrypted transport.",
+          "No network transmission or electronic storage method can be guaranteed absolutely secure. If your financial data is highly sensitive, choose imported or forwarded content carefully and review app settings and system permissions regularly.",
+        ],
+      },
+      { title: "11. Children", body: ["AutoLedger is intended for users with independent personal finance needs. We do not knowingly provide services to, or collect personal information from, children under 14."] },
+      {
+        title: "12. Your choices and rights",
+        body: ["Where permitted by law, you can:"],
+        list: [
+          "View, edit, export, or delete locally stored ledger and hotel stay records",
+          "Disable Photos, Camera, Notifications, Microphone, iCloud, and other system permissions",
+          "Remove local email authorization, rotate the cloud inbox address, or stop forwarding mail",
+          "Manage, cancel, or restore Pro subscriptions through the App Store",
+          "Stop using related features or uninstall the app",
+        ],
+      },
+      {
+        title: "13. Updates to this policy",
+        body: [
+          "We may update this policy as product features, legal requirements, or service configuration changes. Updated versions will be published on this page and become effective on publication.",
+          "For material changes, we will notify you through release notes, in-app prompts, or other reasonable methods.",
+        ],
+      },
+      {
+        title: "14. Contact",
+        body: [
+          "If you have questions, suggestions, or complaints about this policy, contact the developer:",
+          'Website: <a href="https://getautoledger.app/" target="_blank" rel="noopener noreferrer">https://getautoledger.app/</a>',
+          "If dedicated support channels are added later, we will update this page.",
+        ],
+      },
     ],
   };
 
   messages.ja.privacy = {
     heading: "プライバシーポリシー",
     intro:
-      "AutoLedger はプライバシーとデータの安全性を重視しています。このページでは、処理される可能性のある情報、その扱い方、利用者の選択肢について説明します。",
+      "AutoLedger はローカル優先の設計を中心にしつつ、AutoLedger Pro の任意の自動化機能を提供します。このページでは、処理される可能性のある情報、その目的、利用者が管理できる内容について説明します。",
     product: "対象製品：AutoLedger",
-    updated: "最終更新：2026-03-27",
-    localFirst: "初期設定ではローカル優先",
+    updated: "最終更新：2026-07-01",
+    localFirst: "ローカル優先、クラウド機能は任意",
     footer: "© 2026 AutoLedger · プライバシーポリシー",
     sections: [
-      { title: "1. 私たちについて", body: ["AutoLedger は個人向けの支出記録アプリです。主な機能には、スクリーンショット認識、明細取り込み、自動分類、ショートカットによるワンタップ記録、支出集計などがあります。", "本ポリシーは AutoLedger iOS アプリおよびアプリに直接関連するサービスページに適用されます。"] },
-      { title: "2. 処理する情報", body: ["AutoLedger は初期設定ではアカウント登録を必要とせず、氏名、電話番号、身分証番号、メールアドレスなどの個人識別情報を積極的に収集しません。", "関連機能を利用する際、以下の情報をアプリに提供する場合があります。"], list: ["利用者が取り込むスクリーンショット、写真、レシート画像", "画像に含まれる可能性のある金額、店舗、時間、支払い方法などの明細テキスト", "利用者が手動で編集・追加するメモ、分類、ソース情報", "ショートカット、共有拡張、クリップボード取り込みを利用する際のテキストまたは画像"], callout: "記録、認識、分類、表示、デバッグに必要な範囲でのみデータを処理し、無関係な収集は行いません。" },
-      { title: "3. データの処理方法", body: ["AutoLedger は<strong>ローカル優先</strong>の設計です。初期設定では、スクリーンショット、写真、記録データは端末内で優先的に処理・保存されます。"], list: ["ローカル OCR が利用できる場合は端末内で優先実行します", "解析、分類、重複排除、表示などは初期設定では端末内で行われます", "記録データは初期設定では端末内データベースに保存されます"], after: ["第三者サービスによる認識、解析、AI 機能を有効にした場合、その機能を完了するために関連するスクリーンショット内のテキストまたは画像が第三者サービスへ送信されることがあります。"], warning: "今後クラウド同期、リモート AI 解析、アカウント、サーバー保存を追加する場合、本ポリシーを更新し、必要に応じてアプリ内表示や更新説明でお知らせします。" },
-      { title: "4. 情報の利用目的", body: ["関連情報は以下の目的にのみ使用します。"], list: ["利用者が取り込んだスクリーンショットまたは写真内の明細内容を認識するため", "金額、店舗、時間、分類などを含む記録を作成するため", "記録の表示、検索、集計、月次レポート、傾向分析を行うため", "ショートカット、共有拡張、カメラ認識、クリップボード取り込みを支援するため", "デバッグまたは検証ページを開いた場合に OCR 原文、解析結果、取り込み状態を表示するため", "安定性の改善、認識問題の修正、製品体験の向上のため"] },
-      { title: "5. 権限について", body: ["利用する機能に応じて、AutoLedger は以下のシステム権限を要求する場合があります。"], list: ["<strong>写真/アルバム権限</strong>：選択したスクリーンショットや写真を読み取り、明細内容を認識するため。", "<strong>カメラ権限</strong>：明細、レシート、支払い画面を撮影して認識するため。", "<strong>通知権限</strong>：有効化した場合に記録結果、リマインダー、状態フィードバックを表示するため。", "<strong>クリップボードアクセス</strong>：利用者が貼り付け取り込みを明示的に実行した際に、テキストや画像を読み取るため。"], after: ["すべての権限は該当機能に必要な場合のみ使用されます。iOS の設定からいつでも無効にできます。"] },
-      { title: "6. 第三者サービス", body: ["今後、認識、解析、または知能機能の一部を実現するため、OCR サービス、AI テキスト解析、クラウドモデルなどの第三者サービスを導入する場合があります。", "導入する場合、以下の方針に従います。"], list: ["機能実現に必要な最小限のデータのみ送信する", "広告、プロファイリング、無関係なマーケティングに利用しない", "個人データを販売しない", "機能公開時に本ポリシーとアプリ内説明を更新する"] },
-      { title: "7. 保存と保持", body: ["記録データは初期設定では端末内に保存されます。将来クラウド同期機能を明示的に提供し、利用者が有効化しない限り、開発者サーバーに記録データを保存しません。"], list: ["ローカルデータの保持期間は利用者が管理します", "アプリを削除するとローカルデータも削除される場合があります", "エクスポート、バックアップ、クラウド同期を将来提供する場合は別途説明します"] },
-      { title: "8. データの安全性", body: ["iOS のセキュリティ機構、処理範囲の最小化、不要な外部送信の削減など、合理的な保護措置を講じます。", "ただし、ネットワーク送信や電子保存に絶対的な安全はありません。機密性の高い財務情報を扱う場合は、取り込む内容を慎重に選び、アプリ設定とシステム権限を確認してください。"] },
-      { title: "9. 未成年者", body: ["AutoLedger は独立した家計管理ニーズを持つ利用者向けです。14 歳未満の未成年者に意図的にサービスを提供したり、個人情報を収集したりすることはありません。"] },
-      { title: "10. 利用者の選択肢", body: ["適用法で認められる範囲で、利用者は以下を行えます。"], list: ["端末内に保存された記録データを確認・管理する", "取り込んだ明細情報を削除する", "写真、カメラ、通知などのシステム権限を無効化する", "関連機能の利用を停止、またはアプリをアンインストールする"] },
-      { title: "11. ポリシーの更新", body: ["製品機能、法令、事業上の必要に応じて本ポリシーを更新する場合があります。更新版は本ページに掲載され、掲載時点から有効になります。", "重要な変更がある場合は、更新説明、アプリ内表示、またはその他の合理的な方法でお知らせします。"] },
-      { title: "12. お問い合わせ", body: ['本ポリシーに関する質問、提案、苦情がある場合は、開発者までご連絡ください。', 'Web サイト：<a href="https://getautoledger.app/" target="_blank" rel="noopener noreferrer">https://getautoledger.app/</a>', "専用サポート窓口などを追加した場合は、本ページでお知らせします。"] },
+      {
+        title: "1. 私たちについて",
+        body: [
+          "AutoLedger は個人向けの支出記録アプリです。スクリーンショット認識、カメラ認識、テキスト入力、ホテル明細の取り込み、複数台帳、サブスクリプション管理、月次レポート、AutoLedger Pro 自動化機能を提供します。",
+          "本ポリシーは AutoLedger アプリ、関連する Apple プラットフォーム版、および getautoledger.app 上の AutoLedger 関連サービスページに適用されます。",
+        ],
+      },
+      {
+        title: "2. 処理する情報",
+        body: [
+          "AutoLedger は初期設定ではアカウント登録を必要とせず、氏名、電話番号、身分証番号などの個人識別情報を積極的に収集しません。",
+          "利用者が選択した機能に応じて、以下の情報を処理する場合があります。",
+        ],
+        list: [
+          "利用者が取り込むスクリーンショット、写真、PDF、レシート、ホテル明細の添付ファイル",
+          "それらのファイルに含まれる可能性のある金額、店舗、ホテル名、宿泊日、時刻、支払い方法、通貨などの明細テキスト",
+          "利用者が追加または編集する記録、ホテル滞在、サブスクリプション、台帳、分類、店舗別名、メモ、タグ",
+          "ショートカット、共有拡張、クリップボード、音声入力、App Intents を通じて提供されるテキストまたは画像",
+          "同期、バックアップ、Pro サブスクリプション機能、クラウドホテル明細受信箱を有効にした場合に必要な最小限の状態情報",
+        ],
+        callout:
+          "記録、認識、整理、同期、サブスクリプション確認、クラウド候補のダウンロード、不具合調査、不正利用防止に必要な範囲でのみ処理します。個人データを販売したり、広告プロファイルに利用したりしません。",
+      },
+      {
+        title: "3. ローカル処理、iCloud、端末同期",
+        body: [
+          "AutoLedger は<strong>ローカル優先</strong>の設計です。初期設定では、認識、解析、分類、表示、編集は端末上で優先的に実行され、記録データもまず端末内に保存されます。",
+        ],
+        list: [
+          "OCR、解析、分類、重複排除、月次レポートは初期設定ではローカルで実行されます",
+          "メールのアプリパスワードや認可コードはローカル Keychain のみに保存され、AutoLedger サーバーへアップロードされません",
+          "iCloud 同期またはバックアップを有効にした場合、関連データは利用者の Apple iCloud アカウントを通じて同期されます。開発者が iCloud の内容を直接読むことはできません",
+          "同期を無効化したりローカルデータを削除した場合、アプリはシステム機能と利用者の操作に従って新しい同期を停止、またはローカルコピーを削除します",
+        ],
+      },
+      {
+        title: "4. AutoLedger Pro とサブスクリプション確認",
+        body: [
+          "AutoLedger Pro は App Store のサブスクリプションとして提供されます。購入、更新、返金、請求、支払い方法は Apple が処理します。AutoLedger がカード番号や完全な支払い情報を受け取ることはありません。",
+          "Pro の有効性を判断するため、アプリは端末上の StoreKit 権利情報を読み取ります。クラウドホテル明細受信箱などサーバー側機能を利用する場合、アプリは Apple が署名した取引情報を AutoLedger Worker に送信することがあります。Worker は App Store Server API を通じて商品 ID、Bundle ID、取り消し状態、有効期限を確認します。",
+        ],
+        list: [
+          "サーバーには必要なサブスクリプション状態、有効期限、元取引 ID から生成したハッシュ識別子のみを保存します",
+          "Pro の期限が切れても、保存済みの履歴記録、ホテル滞在、PDF、基本エクスポート機能は引き続き利用できます",
+          "現在のバージョンでは App Store Server Notifications によるサブスクリプションライフサイクルの能動受信は使用していません。後日追加する場合も、同じ最小化とハッシュ化の原則に従います",
+        ],
+      },
+      {
+        title: "5. ローカルメールスキャンとクラウドホテル明細受信箱",
+        body: [
+          "AutoLedger には、ローカルメールスキャンと AutoLedger Pro クラウドホテル明細受信箱という二つのホテル明細ワークフローがあります。",
+        ],
+        list: [
+          "ローカルメールスキャンは端末上で設定したメールボックスに接続し、ホテル明細らしいメールと添付ファイルを探します。メールのアプリパスワードや認可コードはローカル Keychain に保存され、サーバーへアップロードされません",
+          "クラウドホテル明細受信箱は folio+token@getautoledger.app のような専用アドレスに届いたメールのみを処理します。QQ、Gmail、Outlook、iCloud Mail などの個人メールボックスへログインすることはありません",
+          "クラウド Worker は PDF 添付ファイルまたは必要な本文明細を抽出し、アプリがダウンロードして確認できるよう、候補 PDF と最小化された候補メタデータを保存します",
+          "クラウド候補は正式な台帳へ自動登録されません。ダウンロード後も、利用者がアプリ内で確認してからホテル滞在または記録が作成されます",
+          "APNs 通知には一般的なメッセージと deep link のみを使用し、ホテル名、金額、注文番号、添付ファイル名、受信箱 token は含めません",
+        ],
+        warning:
+          "AutoLedger に処理させたいホテル明細メールだけを専用アドレスへ転送してください。専用アドレスに一致しないメールはホテル明細候補として処理されません。",
+      },
+      {
+        title: "6. 情報の利用目的",
+        body: ["情報は以下の目的にのみ使用します。"],
+        list: [
+          "利用者が取り込む、または転送する明細、スクリーンショット、写真、PDF、ホテル明細を認識するため",
+          "確認待ち記録、ホテル滞在、サブスクリプション、月次サマリー、確認画面を作成するため",
+          "ローカルメールスキャン、クラウド明細候補、候補の一括整理、重複排除、その他 Pro 自動化機能を提供するため",
+          "App Store サブスクリプション確認、サービストークン発行、有効期限管理、不正利用防止のため",
+          "利用者が有効にした通知、状態フィードバック、クラウド候補リマインダーを送信するため",
+          "不具合調査、認識品質の改善、安定性向上のため",
+        ],
+      },
+      {
+        title: "7. 権限について",
+        body: ["利用する機能に応じて、AutoLedger は以下のシステム権限を要求する場合があります。"],
+        list: [
+          "<strong>写真/アルバム権限</strong>：選択したスクリーンショットや写真を読み取り、明細内容を認識するため。",
+          "<strong>カメラ権限</strong>：レシート、明細、チケット、支払い画面を撮影するため。",
+          "<strong>マイク/音声入力</strong>：音声入力または一文記録を利用者が明示的に使用する場合に入力を受け取るため。",
+          "<strong>通知権限</strong>：記録結果、リマインダー、サブスクリプション通知、クラウド候補状態を表示するため。",
+          "<strong>クリップボードアクセス</strong>：利用者が貼り付け取り込みを明示的に実行した場合のみ、テキストや画像を読み取るため。",
+          "<strong>iCloud</strong>：同期またはバックアップを有効にした場合、Apple iCloud を通じて関連データを保存・同期するため。",
+        ],
+        after: ["すべての権限は該当機能に必要な場合のみ使用されます。システム設定からいつでも無効にできます。"],
+      },
+      {
+        title: "8. 第三者およびインフラサービス",
+        body: [
+          "AutoLedger は可能な限り端末内で処理します。一部の任意機能は、Apple、Cloudflare、または利用者が設定した外部サービスに依存します。",
+        ],
+        list: [
+          "Apple：App Store サブスクリプション、StoreKit 確認、iCloud 同期 / バックアップ、APNs 通知、システム権限",
+          "Cloudflare：getautoledger.app のホスティング、Email Routing、Workers、D1、R2、Queues によるクラウドホテル明細受信箱",
+          "メールプロバイダ：ローカルメールスキャンを設定した場合のみ、端末が該当メールサービスへ接続します",
+          "任意の外部認識または AI サービス：利用者が設定または有効化した場合のみ使用し、該当機能に必要な最小限のデータに限定します",
+        ],
+      },
+      {
+        title: "9. 保存、保持、削除",
+        body: [
+          "ローカルの記録データ、ホテル滞在、サブスクリプション、設定は利用者が端末上で管理します。クラウドホテル明細受信箱は、候補のダウンロードと確認に必要な素材のみを保存します。",
+        ],
+        list: [
+          "ローカルデータの保持期間は利用者が管理します。アプリやデータを削除するとローカルコピーも削除される場合があります",
+          "iCloud データは利用者の Apple アカウントとシステム設定で管理されます",
+          "ローカルメール認可はアプリ内で削除でき、削除すると新しいスキャンが停止し、ローカルに保存された認証情報も削除されます",
+          "クラウド明細候補はアプリ内で処理済みまたは削除にできます。候補 PDF とメタデータは利用者の操作、サブスクリプション状態、またはサービスのクリーンアップ規則に従って削除または期限切れになります",
+          "raw 受信箱 token はアプリに一度だけ返されます。サーバーは token ハッシュを保存し、アドレスをローテーションすると古い token は無効化されます",
+        ],
+      },
+      {
+        title: "10. データの安全性",
+        body: [
+          "iOS Keychain、システム権限、token のハッシュ化、クラウドメタデータの最小化、サーバー側サブスクリプション確認、アクセストークン、暗号化通信など、合理的な保護措置を講じます。",
+          "ただし、ネットワーク送信や電子保存に絶対的な安全はありません。機密性の高い財務情報を扱う場合は、取り込みまたは転送する内容を慎重に選び、アプリ設定とシステム権限を定期的に確認してください。",
+        ],
+      },
+      { title: "11. 未成年者", body: ["AutoLedger は独立した家計管理ニーズを持つ利用者向けです。14 歳未満の未成年者に意図的にサービスを提供したり、個人情報を収集したりすることはありません。"] },
+      {
+        title: "12. 利用者の選択肢と権利",
+        body: ["適用法で認められる範囲で、利用者は以下を行えます。"],
+        list: [
+          "端末内に保存された記録とホテル滞在を確認、編集、エクスポート、削除する",
+          "写真、カメラ、通知、マイク、iCloud などのシステム権限を無効化する",
+          "ローカルメール認可を削除し、クラウド受信箱アドレスをローテーションし、メール転送を停止する",
+          "App Store を通じて Pro サブスクリプションを管理、キャンセル、復元する",
+          "関連機能の利用を停止、またはアプリをアンインストールする",
+        ],
+      },
+      {
+        title: "13. ポリシーの更新",
+        body: [
+          "製品機能、法令、サービス構成の変更に応じて本ポリシーを更新する場合があります。更新版は本ページに掲載され、掲載時点から有効になります。",
+          "重要な変更がある場合は、更新説明、アプリ内表示、またはその他の合理的な方法でお知らせします。",
+        ],
+      },
+      {
+        title: "14. お問い合わせ",
+        body: [
+          "本ポリシーに関する質問、提案、苦情がある場合は、開発者までご連絡ください。",
+          'Web サイト：<a href="https://getautoledger.app/" target="_blank" rel="noopener noreferrer">https://getautoledger.app/</a>',
+          "専用サポート窓口などを追加した場合は、本ページでお知らせします。",
+        ],
+      },
     ],
   };
 
