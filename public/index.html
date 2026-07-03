@@ -1,23 +1,72 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hans">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>darkrio Apps · Utility tools</title>
-  <meta name="description" content="darkrio 的应用产品入口：AutoLedger 与正在推进的实用工具。" />
-  <meta name="theme-color" content="#080b0a" />
+  <title>darkrio326 Apps · AutoLedger 与 AutoNotice</title>
+  <meta name="description" content="darkrio326 Apps 的轻量产品入口，包含 AutoLedger 与 AutoNotice 的产品、技术支持和隐私政策链接。" />
+  <meta name="theme-color" content="#fafafa" />
   <style>
     :root {
-      --bg: #080b0a;
-      --surface: #101713;
-      --surface-2: #151f19;
-      --line: rgba(240, 248, 242, 0.12);
-      --text: #f4f8f5;
-      --muted: #9ca9a0;
-      --green: #6fc47a;
-      --green-strong: #97e6a0;
-      --amber: #f7b731;
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --surface-warm: #fbfcff;
+      --fg: #111111;
+      --fg-2: var(--fg);
+      --muted: #6b6b6b;
+      --meta: var(--muted);
+      --border: #dfe5ee;
+      --border-soft: var(--border);
+      --accent: #2f6feb;
+      --notice-soft: #eaf2ff;
+      --ledger-soft: #edf8ef;
+      --accent-on: #ffffff;
+      --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+      --accent-active: color-mix(in oklab, var(--accent), black 14%);
+      --success: #17a34a;
+      --warn: #eab308;
+      --danger: #dc2626;
+      --font-display: "Inter", -apple-system, system-ui, sans-serif;
+      --font-body: "Inter", -apple-system, system-ui, sans-serif;
+      --font-mono: ui-monospace, "JetBrains Mono", monospace;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 20px;
+      --text-xl: 24px;
+      --text-2xl: 32px;
+      --text-3xl: 48px;
+      --text-4xl: 64px;
+      --leading-body: 1.5;
+      --leading-tight: 1.2;
+      --tracking-display: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-20: 80px;
+      --section-y-desktop: 80px;
+      --section-y-tablet: 48px;
+      --section-y-phone: 32px;
+      --radius-sm: 8px;
+      --radius-md: 8px;
+      --radius-lg: 8px;
+      --radius-pill: 9999px;
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);
+      --elev-raised: 0 2px 8px color-mix(in oklab, var(--fg), transparent 92%);
+      --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+      --motion-fast: 150ms;
+      --motion-base: 200ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1200px;
+      --container-gutter-desktop: 24px;
+      --container-gutter-tablet: 16px;
+      --container-gutter-phone: 12px;
     }
 
     * {
@@ -25,16 +74,19 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: var(--leading-body);
+      text-size-adjust: 100%;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(180deg, #111a15 0%, var(--bg) 44%, #070907 100%);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.6;
+      background:
+        linear-gradient(180deg, #eef4ff 0%, var(--bg) 22rem, #f8fafc 100%);
+      color: var(--fg);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -43,256 +95,833 @@
       text-decoration: none;
     }
 
-    .shell {
-      width: min(1120px, calc(100% - 32px));
+    a:focus-visible,
+    button:focus-visible {
+      box-shadow: var(--focus-ring);
+      outline: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container-max), calc(100% - (var(--container-gutter-desktop) * 2)));
       margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid color-mix(in oklab, var(--border), transparent 38%);
+      background: color-mix(in oklab, var(--surface-warm), transparent 10%);
+      backdrop-filter: blur(18px);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding: 22px 0 30px;
+      gap: var(--space-5);
+      padding: var(--space-4) 0;
     }
 
     .brand {
-      font-size: 22px;
-      font-weight: 760;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      gap: var(--space-2);
       color: var(--muted);
-      font-size: 14px;
-      font-weight: 650;
+      font-size: var(--text-sm);
+      font-weight: 500;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
+    .locale-switch {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--fg);
+      padding: var(--space-2) var(--space-3);
+      font: inherit;
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .nav-link {
+      border-radius: var(--radius-sm);
+      padding: var(--space-2) var(--space-3);
+      transition:
+        background var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard);
+    }
+
+    .nav-link:hover {
+      background: color-mix(in oklab, var(--surface), transparent 24%);
+      color: var(--fg);
+    }
+
+    main {
+      display: grid;
+      gap: var(--space-20);
+      padding: var(--section-y-desktop) 0 var(--space-12);
     }
 
     .hero {
+      position: relative;
       display: grid;
-      min-height: 72vh;
-      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
-      align-items: center;
-      gap: 46px;
-      padding: 20px 0 56px;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.7fr);
+      align-items: end;
+      gap: clamp(var(--space-8), 6vw, var(--space-20));
+      min-height: 50vh;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: -32px -24px;
+      z-index: -1;
+      border: 1px solid color-mix(in oklab, var(--border), transparent 48%);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, color-mix(in oklab, var(--notice-soft), white 22%), transparent 64%),
+        var(--surface-warm);
+      content: "";
+    }
+
+    .eyebrow {
+      margin: 0 0 var(--space-4);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: var(--tracking-display);
+      line-height: var(--leading-tight);
     }
 
     h1 {
+      max-width: 12ch;
+      font-size: var(--text-4xl);
+    }
+
+    h2 {
+      font-size: var(--text-2xl);
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+    }
+
+    p {
       margin: 0;
-      font-size: clamp(48px, 8vw, 92px);
-      line-height: 0.95;
-      font-weight: 760;
-      letter-spacing: 0;
     }
 
     .lead {
-      max-width: 620px;
-      margin: 24px 0 0;
+      max-width: 62ch;
+      margin-top: var(--space-5);
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.9;
+      font-size: var(--text-lg);
     }
 
-    .actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
     }
 
     .button {
       display: inline-flex;
-      min-height: 48px;
+      min-height: 44px;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      padding: 0 18px;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 720;
+      gap: var(--space-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--fg);
+      cursor: pointer;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0;
+      padding: var(--space-2) var(--space-4);
+      transition:
+        background var(--motion-fast) var(--ease-standard),
+        border-color var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+      white-space: nowrap;
     }
 
-    .button.primary {
-      border-color: transparent;
-      background: var(--green);
-      color: #061108;
-      box-shadow: 0 18px 44px rgba(111, 196, 122, 0.15);
+    .button:hover {
+      border-color: color-mix(in oklab, var(--fg), var(--border) 78%);
+      transform: translateY(-1px);
     }
 
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(16, 23, 19, 0.82);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .button-primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--accent-on);
+    }
+
+    .button-primary:hover {
+      border-color: var(--accent-hover);
+      background: var(--accent-hover);
+    }
+
+    .button-quiet {
+      background: transparent;
+    }
+
+    .hub-panel {
+      display: grid;
+      gap: var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: color-mix(in oklab, var(--surface-warm), transparent 4%);
+      box-shadow: var(--elev-raised);
+      padding: var(--space-5);
+    }
+
+    .hub-panel-row {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: center;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: var(--space-4);
+    }
+
+    .hub-panel-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .mini-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: color-mix(in oklab, var(--accent), transparent 88%);
+      color: var(--accent);
+    }
+
+    .mini-icon img {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-sm);
+    }
+
+    .hub-panel strong {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .hub-panel span {
+      display: block;
+      color: var(--muted);
+      font-size: var(--text-sm);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .section-heading p {
+      max-width: 48ch;
+      color: var(--muted);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
     }
 
     .app-card {
-      padding: 28px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: var(--space-6);
+      min-height: 520px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: color-mix(in oklab, var(--surface), var(--surface-warm) 28%);
+      padding: clamp(var(--space-5), 4vw, var(--space-8));
     }
 
-    .app-head {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 20px;
+    .app-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .app-title {
+      display: flex;
       align-items: center;
+      gap: var(--space-4);
     }
 
     .app-icon {
+      position: relative;
       display: grid;
+      flex: 0 0 auto;
       width: 72px;
       height: 72px;
       place-items: center;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #266833, #72c77b);
-      color: #f5fff6;
-      font-size: 34px;
-      font-weight: 820;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: color-mix(in oklab, var(--success), transparent 88%);
+      color: var(--success);
+      overflow: hidden;
     }
 
-    .app-card h2 {
-      margin: 0;
-      font-size: 30px;
-      line-height: 1.1;
-      letter-spacing: 0;
+    .app-icon-ledger {
+      background: transparent;
+      color: var(--success);
     }
 
-    .app-card p {
-      margin: 8px 0 0;
+    .app-icon-notice {
+      background: color-mix(in oklab, var(--accent), transparent 92%);
+      color: var(--accent);
+    }
+
+    .app-icon img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+    }
+
+    .app-icon-notice img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
       color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0;
+      padding: var(--space-1) var(--space-3);
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .feature-list {
-      margin: 28px 0 0;
+    .app-copy {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .app-copy p {
+      color: var(--muted);
+      font-size: var(--text-base);
+    }
+
+    .module-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
       padding: 0;
       list-style: none;
+    }
+
+    .module-list li {
       display: grid;
-      gap: 12px;
+      grid-template-columns: 10px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: baseline;
+      color: var(--fg);
+      font-size: var(--text-sm);
     }
 
-    .feature-list li {
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-      color: var(--text);
-      font-size: 15px;
+    .module-list li::before {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: var(--fg);
+      content: "";
     }
 
-    .more {
+    .app-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+    }
+
+    .standards {
+      display: grid;
+      grid-template-columns: 0.75fr 1fr;
+      gap: var(--space-8);
+      align-items: start;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-8) 0;
+    }
+
+    .standards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      padding: 0 0 72px;
+      gap: var(--space-4);
     }
 
-    .mini {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(16, 23, 19, 0.58);
-      padding: 20px;
+    .standard-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: color-mix(in oklab, var(--surface-warm), transparent 10%);
+      padding: var(--space-5);
     }
 
-    .mini h2 {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: 0;
+    .standard-card h3 {
+      margin-bottom: var(--space-3);
     }
 
-    .mini p {
-      margin: 10px 0 0;
+    .standard-card p {
       color: var(--muted);
-      font-size: 14px;
+      font-size: var(--text-sm);
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 26px 0 36px;
+    .support-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      padding: var(--space-5);
+    }
+
+    .support-strip p {
       color: var(--muted);
-      font-size: 14px;
-      text-align: center;
+      font-size: var(--text-sm);
     }
 
-    @media (max-width: 860px) {
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
+    .copy-status {
+      min-width: 7.5rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-align: right;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: var(--text-sm);
+      padding: var(--space-6) 0 var(--space-8);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .footer-links a:hover {
+      color: var(--fg);
+    }
+
+    @media (max-width: 1023px) {
+      .container {
+        width: min(var(--container-max), calc(100% - (var(--container-gutter-tablet) * 2)));
+      }
+
+      main {
+        gap: var(--section-y-tablet);
+        padding: var(--section-y-tablet) 0 var(--space-12);
+      }
+
+      .hero,
+      .standards {
+        grid-template-columns: 1fr;
       }
 
       .hero {
         min-height: auto;
-        grid-template-columns: 1fr;
-        padding-top: 12px;
       }
 
-      .more {
+      .app-grid {
         grid-template-columns: 1fr;
+      }
+
+      .app-card {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .container {
+        width: min(var(--container-max), calc(100% - (var(--container-gutter-phone) * 2)));
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .nav,
+      .section-heading,
+      .support-strip,
+      .footer-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      main {
+        gap: var(--section-y-phone);
+        padding: var(--section-y-phone) 0 var(--space-8);
+      }
+
+      h1 {
+        max-width: none;
+        font-size: var(--text-3xl);
+      }
+
+      h2 {
+        font-size: var(--text-xl);
+      }
+
+      .lead {
+        font-size: var(--text-base);
+      }
+
+      .hero-actions,
+      .app-actions {
+        width: 100%;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hub-panel,
+      .app-card,
+      .support-strip {
+        padding: var(--space-4);
+      }
+
+      .app-card-header,
+      .app-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .tag {
+        white-space: normal;
+      }
+
+      .standards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .copy-status {
+        min-width: 0;
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="shell nav" aria-label="Primary navigation">
-    <a class="brand" href="/">darkrio Apps</a>
-    <div class="nav-links">
-      <a href="https://www.darkrio326.top">Home</a>
-      <a href="https://game.darkrio326.top">Games</a>
-      <a href="https://getautoledger.app/support">Support</a>
-    </div>
-  </nav>
+  <header class="site-header" data-od-id="site-header">
+    <nav class="container nav" aria-label="Primary navigation" data-od-id="primary-navigation">
+      <a class="brand" href="/" data-od-id="brand-home-link">
+        <span class="brand-mark" aria-hidden="true">DR</span>
+        <span>darkrio326 Apps</span>
+      </a>
+      <div class="nav-links" data-od-id="header-links">
+        <a class="nav-link" href="#apps" data-i18n="nav.apps" data-od-id="nav-apps">应用</a>
+        <a class="nav-link" href="https://getautoledger.app/support" data-i18n="nav.autoledgerSupport" data-od-id="nav-autoledger-support">AutoLedger 支持</a>
+        <a class="nav-link" href="/autonotice/support/" data-i18n="nav.autonoticeSupport" data-od-id="nav-autonotice-support">AutoNotice 支持</a>
+        <select class="locale-switch" data-locale-select aria-label="Language">
+          <option value="zh-Hans">简中</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </nav>
+  </header>
 
-  <main class="shell">
-    <section class="hero">
-      <div>
-        <h1>Apps</h1>
-        <p class="lead">
-          面向真实日常流程的 utility tools。先把一件事做到足够省心，再决定它是否值得长成一个产品线。
+  <main class="container" data-od-id="main-content">
+    <section class="hero" data-od-id="hero">
+      <div data-od-id="hero-copy">
+        <p class="eyebrow" data-i18n="home.eyebrow" data-od-id="hero-eyebrow">独立原生工具</p>
+        <h1 data-i18n="home.heroTitle" data-od-id="hero-title">处理日常小摩擦的轻量 App。</h1>
+        <p class="lead" data-i18n="home.heroLead" data-od-id="hero-lead">
+          darkrio326 构建贴近日常流程的 Apple 平台工具：少打字也能记账，在小问题变成待办之前收到合适的提醒。
         </p>
-        <div class="actions">
-          <a class="button primary" href="https://getautoledger.app/">Open AutoLedger →</a>
-          <a class="button" href="https://apps.apple.com/us/app/autoledger-%E4%B8%80%E9%94%AE%E8%AE%B0%E8%B4%A6/id6761892533?l=zh-Hans-CN" target="_blank" rel="noopener noreferrer">App Store</a>
-          <a class="button" href="https://testflight.apple.com/join/T3Wu6ngk" target="_blank" rel="noopener noreferrer">TestFlight</a>
-          <a class="button" href="https://getautoledger.app/privacy/">Privacy</a>
+        <div class="hero-actions" data-od-id="hero-actions">
+          <a class="button button-primary" href="https://getautoledger.app/" data-i18n="action.openAutoLedger" data-od-id="hero-autoledger-link">打开 AutoLedger</a>
+          <a class="button" href="/autonotice/" data-i18n="action.openAutoNotice" data-od-id="hero-autonotice-link">打开 AutoNotice</a>
         </div>
       </div>
 
-      <article class="panel app-card">
-        <div class="app-head">
-          <div class="app-icon" aria-hidden="true">AL</div>
-          <div>
-            <h2>AutoLedger</h2>
-            <p>截图与快捷指令驱动的一键记账工具。按一下，就记好。</p>
-          </div>
+      <aside class="hub-panel" aria-label="Product snapshot" data-od-id="product-snapshot">
+        <a class="hub-panel-row" href="https://getautoledger.app/" data-od-id="snapshot-autoledger">
+          <span class="mini-icon" aria-hidden="true">
+            <img src="/assets/autoledger-icon.png" alt="" />
+          </span>
+          <span>
+            <strong>AutoLedger</strong>
+            <span data-i18n="home.snapshotAutoLedger">从截图开始的个人账本</span>
+          </span>
+        </a>
+        <a class="hub-panel-row" href="/autonotice/" data-od-id="snapshot-autonotice">
+          <span class="mini-icon" aria-hidden="true">
+            <img src="/autonotice/assets/icon.png" alt="" />
+          </span>
+          <span>
+            <strong>AutoNotice</strong>
+            <span data-i18n="home.snapshotAutoNotice">轻量模块化提醒工具</span>
+          </span>
+        </a>
+        <div class="hub-panel-row" data-od-id="snapshot-support">
+          <span class="mini-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3a7 7 0 0 0-7 7v3a3 3 0 0 0 3 3h1v-6H6a6 6 0 1 1 12 0h-3v6h1a3 3 0 0 0 3-3v-3a7 7 0 0 0-7-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>
+            <strong data-i18n="home.snapshotSupportTitle">支持入口清晰可见</strong>
+            <span data-i18n="home.snapshotSupportBody">每个应用都保留产品、技术支持与隐私政策链接。</span>
+          </span>
         </div>
-        <ul class="feature-list">
-          <li>面向个人与小型经营场景的低摩擦记账入口。</li>
-          <li>保留支持与隐私页面，适合作为当前公开 App 样板。</li>
-          <li>已提供 App Store 正式页与 TestFlight 新版测试入口。</li>
-          <li>后续 AppHome 将承接更多收据、报表与自动化工具。</li>
-        </ul>
-      </article>
+      </aside>
     </section>
 
-    <section class="more" aria-label="More app directions">
-      <article class="mini">
-        <h2>Receipt Reader</h2>
-        <p>从票据、截图和流水中提取结构化信息。</p>
-      </article>
-      <article class="mini">
-        <h2>CSV Cleaner</h2>
-        <p>把手工整理表格的重复动作做成小工具。</p>
-      </article>
-      <article class="mini">
-        <h2>Workflow Helpers</h2>
-        <p>服务个人项目推进、复盘和发布检查的小型自动化。</p>
-      </article>
+    <section id="apps" data-od-id="apps-section">
+      <div class="section-heading" data-od-id="apps-heading">
+        <div>
+          <p class="eyebrow" data-i18n="home.appsEyebrow" data-od-id="apps-eyebrow">当前产品</p>
+          <h2 data-i18n="home.appsTitle" data-od-id="apps-title">两个一等入口，一个克制主页。</h2>
+        </div>
+        <p data-i18n="home.appsIntro" data-od-id="apps-intro">
+          根首页只承担清晰分流，不做冗长营销漏斗：每张产品卡说明应用定位、当前支持路径和隐私政策路径。
+        </p>
+      </div>
+
+      <div class="app-grid" data-od-id="app-grid">
+        <article class="app-card" data-od-id="autoledger-card">
+          <div class="app-card-header" data-od-id="autoledger-card-header">
+            <div class="app-title" data-od-id="autoledger-title-group">
+              <div class="app-icon app-icon-ledger" aria-hidden="true">
+                <img src="/assets/autoledger-icon.png" alt="" />
+              </div>
+              <div>
+                <p class="eyebrow" data-i18n="home.autoledgerCategory" data-od-id="autoledger-category">财务工具</p>
+                <h3 data-od-id="autoledger-title">AutoLedger</h3>
+              </div>
+            </div>
+            <span class="tag" data-i18n="home.autoledgerStatus" data-od-id="autoledger-status">已上线</span>
+          </div>
+
+          <div class="app-copy" data-od-id="autoledger-copy">
+            <p data-i18n="home.autoledgerDesc" data-od-id="autoledger-description">
+              一个围绕截图导入、快捷指令和本机整理构建的个人记账 App。适合想保留消费记录、但不想把每次消费都变成手填表单的人。
+            </p>
+            <ul class="module-list" data-od-id="autoledger-modules">
+              <li data-i18n="home.autoledgerPoint1">记录入口：截图、相机或快速文本。</li>
+              <li data-i18n="home.autoledgerPoint2">账本工作台：流水、分类、报表、订阅和酒店账单。</li>
+              <li data-i18n="home.autoledgerPoint3">隐私姿态：本地优先处理，并提供清晰的支持与政策页面。</li>
+            </ul>
+          </div>
+
+          <div class="app-actions" data-od-id="autoledger-actions">
+            <a class="button button-primary" href="https://getautoledger.app/" data-i18n="action.product" data-od-id="autoledger-product-link">产品</a>
+            <a class="button" href="https://apps.apple.com/us/app/autoledger-%E4%B8%80%E9%94%AE%E8%AE%B0%E8%B4%A6/id6761892533?l=zh-Hans-CN" target="_blank" rel="noopener noreferrer" data-od-id="autoledger-appstore-link">App Store</a>
+            <a class="button button-quiet" href="https://getautoledger.app/support" data-i18n="action.support" data-od-id="autoledger-support-link">支持</a>
+            <a class="button button-quiet" href="https://getautoledger.app/privacy/" data-i18n="action.privacy" data-od-id="autoledger-privacy-link">隐私</a>
+          </div>
+        </article>
+
+        <article class="app-card" data-od-id="autonotice-card">
+          <div class="app-card-header" data-od-id="autonotice-card-header">
+            <div class="app-title" data-od-id="autonotice-title-group">
+              <div class="app-icon app-icon-notice" aria-hidden="true">
+                <img src="/autonotice/assets/icon.png" alt="" />
+              </div>
+              <div>
+                <p class="eyebrow" data-i18n="home.autonoticeCategory" data-od-id="autonotice-category">提醒工具</p>
+                <h3 data-od-id="autonotice-title">AutoNotice</h3>
+              </div>
+            </div>
+            <span class="tag" data-i18n="home.autonoticeStatus" data-od-id="autonotice-status">新应用</span>
+          </div>
+
+          <div class="app-copy" data-od-id="autonotice-copy">
+            <p data-i18n="home.autonoticeDesc" data-od-id="autonotice-description">
+              一个面向通知流程的轻量 iOS 提醒 App。0.1 先落地 Weather Notice，后续可以继续扩展更多提醒模块，并在审计闭环后加入 Pro 自定义模块。
+            </p>
+            <ul class="module-list" data-od-id="autonotice-modules">
+              <li data-i18n="home.autonoticePoint1">0.1 Weather Notice：位置、降雨阈值、静默时间和冷却时间。</li>
+              <li data-i18n="home.autonoticePoint2">0.2+ 模块路径：新增提醒类型时，不改变 AutoNotice 的产品身份。</li>
+              <li data-i18n="home.autonoticePoint3">Pro 方向：审计闭环成熟后，用买断解锁用户自定义提醒模块。</li>
+            </ul>
+          </div>
+
+          <div class="app-actions" data-od-id="autonotice-actions">
+            <a class="button button-primary" href="/autonotice/" data-i18n="action.product" data-od-id="autonotice-product-link">产品</a>
+            <a class="button button-quiet" href="/autonotice/support/" data-i18n="action.support" data-od-id="autonotice-support-link">支持</a>
+            <a class="button button-quiet" href="/autonotice/privacy/" data-i18n="action.privacy" data-od-id="autonotice-privacy-link">隐私</a>
+            <a class="button" href="mailto:support@darkrio326.top" data-i18n="action.contact" data-od-id="autonotice-contact-link">联系</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="standards" data-od-id="standards-section">
+      <div data-od-id="standards-copy">
+        <p class="eyebrow" data-i18n="home.standardsEyebrow" data-od-id="standards-eyebrow">产品标准</p>
+        <h2 data-i18n="home.standardsTitle" data-od-id="standards-title">为静态托管和真实支持流程准备。</h2>
+      </div>
+      <div class="standards-grid" data-od-id="standards-grid">
+        <article class="standard-card" data-od-id="standard-static">
+          <h3 data-i18n="home.standardStaticTitle" data-od-id="standard-static-title">默认静态</h3>
+          <p data-i18n="home.standardStaticBody" data-od-id="standard-static-copy">主页保持静态 HTML/CSS，仅保留极轻量的复制邮箱增强，不依赖构建步骤。</p>
+        </article>
+        <article class="standard-card" data-od-id="standard-routes">
+          <h3 data-i18n="home.standardRoutesTitle" data-od-id="standard-routes-title">稳定路径</h3>
+          <p data-i18n="home.standardRoutesBody" data-od-id="standard-routes-copy">AutoNotice 的产品、支持、隐私、图标资源和 redirect 路径保持独立可追踪。</p>
+        </article>
+        <article class="standard-card" data-od-id="standard-native">
+          <h3 data-i18n="home.standardNativeTitle" data-od-id="standard-native-title">原生 App 克制感</h3>
+          <p data-i18n="home.standardNativeBody" data-od-id="standard-native-copy">布局优先清晰层级、紧凑控件、产品卡和直接链接，而不是泛化的落地页填充。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="support-strip" data-od-id="support-strip">
+      <div data-od-id="support-strip-copy">
+        <h2 data-i18n="home.supportTitle" data-od-id="support-strip-title">需要应用支持？</h2>
+        <p data-i18n="home.supportBody" data-od-id="support-strip-description">可以打开上方产品支持页，也可以复制统一开发者支持邮箱。</p>
+      </div>
+      <div class="app-actions" data-od-id="support-strip-actions">
+        <button class="button" type="button" data-copy-email="support@darkrio326.top" data-i18n="action.copyEmail" data-od-id="copy-support-email">复制支持邮箱</button>
+        <span class="copy-status" role="status" aria-live="polite" data-copy-status data-i18n="state.ready" data-od-id="copy-status">就绪</span>
+      </div>
     </section>
   </main>
 
-  <footer class="shell">© 2026 darkrio · Apps that reduce friction</footer>
+  <footer class="site-footer" data-od-id="site-footer">
+    <div class="container footer-row" data-od-id="footer-row">
+      <span data-od-id="footer-copyright">© 2026 darkrio326</span>
+      <div class="footer-links" data-od-id="footer-links">
+        <a href="https://getautoledger.app/privacy/" data-i18n="footer.autoledgerPrivacy" data-od-id="footer-autoledger-privacy">AutoLedger 隐私</a>
+        <a href="/autonotice/privacy/" data-i18n="footer.autonoticePrivacy" data-od-id="footer-autonotice-privacy">AutoNotice 隐私</a>
+        <a href="mailto:support@darkrio326.top" data-od-id="footer-email">support@darkrio326.top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const copyButton = document.querySelector("[data-copy-email]");
+      const status = document.querySelector("[data-copy-status]");
+
+      if (!copyButton || !status) return;
+
+      const email = copyButton.getAttribute("data-copy-email");
+
+      copyButton.addEventListener("click", async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(email);
+          } else {
+            const field = document.createElement("textarea");
+            field.value = email;
+            field.setAttribute("readonly", "");
+            field.style.position = "fixed";
+            field.style.opacity = "0";
+            document.body.appendChild(field);
+            field.select();
+            document.execCommand("copy");
+            field.remove();
+          }
+
+          status.textContent = window.AutoNoticeI18n ? window.AutoNoticeI18n.t("state.copied") : "已复制";
+          window.setTimeout(() => {
+            status.textContent = window.AutoNoticeI18n ? window.AutoNoticeI18n.t("state.ready") : "就绪";
+          }, 2200);
+        } catch (error) {
+          status.textContent = email;
+        }
+      });
+    })();
+  </script>
+  <script src="/i18n.js"></script>
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoNotice - 自动提醒</title>
+  <meta name="description" content="AutoNotice 是一个轻量模块化提醒 App。0.1 先从 Weather Notice 开始，后续扩展更多提醒模块与 Pro 自定义模块。" />
+  <link rel="canonical" href="https://app.darkrio326.top/autonotice/" />
+  <meta property="og:title" content="AutoNotice - 自动提醒" />
+  <meta property="og:description" content="轻量模块化提醒工具，先从天气提醒开始。" />
+  <meta property="og:url" content="https://app.darkrio326.top/autonotice/" />
+  <meta property="og:image" content="https://app.darkrio326.top/autonotice/assets/icon.png" />
+  <meta name="theme-color" content="#1d74f5" />
+  <link rel="stylesheet" href="/autonotice/styles.css" />
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="/autonotice/">
+      <img src="/autonotice/assets/icon.png" alt="" />
+      <span>AutoNotice</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top" data-i18n="nav.contact">联系开发者</a>
+      <select class="locale-switch" data-locale-select aria-label="Language">
+        <option value="zh-Hans">简中</option>
+        <option value="en">EN</option>
+      </select>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow" data-i18n="autonotice.badge">AutoNotice 0.1 · Weather Notice</div>
+          <h1 data-i18n="autonotice.heroTitle">一个轻量、可扩展的提醒工具。</h1>
+          <p class="lead" data-i18n="autonotice.heroLead">
+            AutoNotice 把提醒拆成一个个小模块。0.1 先做 Weather Notice：当你选择的位置在未来 1-2 小时内可能下雨时，通过通知提前提醒你。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/autonotice/support/" data-i18n="action.support">技术支持</a>
+            <a class="button" href="/autonotice/privacy/" data-i18n="action.privacy">隐私政策</a>
+            <a class="button" href="mailto:support@darkrio326.top" data-i18n="action.getHelp">获取帮助</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="/autonotice/assets/icon.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <ul class="signal-list" aria-label="AutoNotice highlights">
+      <li><strong data-i18n="autonotice.signal1Title">当前位置或城市</strong><span data-i18n="autonotice.signal1Body">可使用当前位置，也可手动选择城市。</span></li>
+      <li><strong data-i18n="autonotice.signal2Title">少打扰</strong><span data-i18n="autonotice.signal2Body">支持阈值、冷却时间和静默时间。</span></li>
+      <li><strong data-i18n="autonotice.signal3Title">模块化扩展</strong><span data-i18n="autonotice.signal3Body">未来提醒类型可以作为 Notice 模块增加。</span></li>
+    </ul>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 data-i18n="autonotice.sectionTitle">它不是另一个天气信息流。</h2>
+        <p data-i18n="autonotice.sectionLead">
+          AutoNotice 不追求复杂地图、资讯流或连续刷新的面板。它只处理一类更具体的问题：重要变化发生前，把提醒送到你面前。
+        </p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="autonotice.weatherOverviewTitle">天气概览</h3>
+          <p data-i18n="autonotice.weatherOverviewBody">在 App 内查看当前位置或所选城市的天气概览，快速确认接下来是否有降雨风险。</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="autonotice.rulesTitle">提醒规则</h3>
+          <p data-i18n="autonotice.rulesBody">配置降雨提醒开关、概率阈值、冷却时间和静默时间，并同步到 AutoNotice WeatherWorker。</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="autonotice.historyTitle">通知历史</h3>
+          <p data-i18n="autonotice.historyBody">查看最近的提醒记录，确认哪些提醒已经发送，以及提醒触发的大致原因。</p>
+        </article>
+        <article class="card wide">
+          <h3 data-i18n="autonotice.workerTitle">独立提醒链路</h3>
+          <p data-i18n="autonotice.workerBody">AutoNotice 使用独立 WeatherWorker 处理设备注册、天气规则、天气概览、通知日志和测试通知。Common API 只用于手动选择城市这类共享基础资料。</p>
+        </article>
+        <article class="card wide">
+          <h3 data-i18n="autonotice.proTitle">从模块到 Pro</h3>
+          <p data-i18n="autonotice.proBody">0.2 之后可以继续增加新的提醒模块；等审计、投递和用户配置闭环稳定后，Pro 买断可以用于解锁用户自定义 Notice 模块。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-links">
+      <a href="/" data-i18n="nav.appHome">Apps</a>
+      <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
+    </div>
+    <div>© 2026 darkrio Studio · AutoNotice</div>
+  </footer>
+  <script src="/i18n.js"></script>
+</body>
+</html>

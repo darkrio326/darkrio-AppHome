@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoNotice 技术支持</title>
+  <meta name="description" content="AutoNotice 技术支持页面，包含常见问题、反馈信息和联系邮箱。" />
+  <link rel="canonical" href="https://app.darkrio326.top/autonotice/support/" />
+  <meta property="og:title" content="AutoNotice 技术支持" />
+  <meta property="og:url" content="https://app.darkrio326.top/autonotice/support/" />
+  <meta name="theme-color" content="#1d74f5" />
+  <link rel="stylesheet" href="/autonotice/styles.css" />
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="/autonotice/">
+      <img src="/autonotice/assets/icon.png" alt="" />
+      <span>AutoNotice</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/autonotice/" data-i18n="nav.home">首页</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top" data-i18n="nav.contact">联系开发者</a>
+      <select class="locale-switch" data-locale-select aria-label="Language">
+        <option value="zh-Hans">简中</option>
+        <option value="en">EN</option>
+      </select>
+    </nav>
+  </header>
+
+  <main class="shell doc-wrap">
+    <section class="doc-hero">
+      <div class="eyebrow" data-i18n="support.eyebrow">AutoNotice Support</div>
+      <h1 data-i18n="support.title">技术支持</h1>
+      <p class="doc-lead" data-i18n="support.lead">
+        如果你在使用 AutoNotice 时遇到天气概览、位置、通知、提醒规则或支持型 IAP 相关问题，可以先查看下方说明，也可以直接通过邮箱联系。
+      </p>
+      <div class="meta-row">
+        <span class="meta-pill" data-i18n="support.version">适用版本：0.1</span>
+        <span class="meta-pill" data-i18n="support.updated">最后更新：2026-07-03</span>
+      </div>
+    </section>
+
+    <div data-autonotice-support-sections>
+    <section class="doc-card">
+      <h2>联系邮箱</h2>
+      <p>如需反馈问题、提交建议或说明审核测试情况，请通过邮箱联系：</p>
+      <p><a class="contact-box" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
+    </section>
+
+    <section class="grid section" aria-label="Support topics">
+      <article class="card wide">
+        <h3>通知没有到达怎么办？</h3>
+        <ul>
+          <li>确认系统通知权限已经允许 AutoNotice 发送通知。</li>
+          <li>确认已选择位置或城市，并已开启天气提醒。</li>
+          <li>进入天气提醒模块后，使用“强制更新提醒规则”同步当前规则。</li>
+          <li>TestFlight 与 App Store 版本使用 APNs production；Xcode 直接运行的 Debug 版本使用 APNs sandbox。</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h3>天气概览或城市不准确怎么办？</h3>
+        <ul>
+          <li>使用当前位置时，请确认系统定位权限可用。</li>
+          <li>手动选择城市时，AutoNotice 会使用 Common API 的城市基础目录及经纬度。</li>
+          <li>天气概览由 AutoNotice WeatherWorker 提供，偶发网络问题可稍后重试。</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h3>反馈时建议提供的信息</h3>
+        <ul>
+          <li>设备型号、iOS 版本和 AutoNotice 版本号。</li>
+          <li>是否来自 TestFlight、App Store 或 Xcode Debug 版本。</li>
+          <li>问题发生前的位置选择、提醒开关、阈值、冷却时间和静默时间设置。</li>
+          <li>如方便，可附带脱敏后的界面截图或错误提示。</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h3>支持型 IAP</h3>
+        <ul>
+          <li>AutoNotice 的支持型 IAP 是自愿支持开发者的 consumable 商品。</li>
+          <li>购买不会解锁额外功能，也不会影响天气提醒、通知投递、历史记录或设置。</li>
+          <li>购买、退款和付款方式由 Apple App Store 处理。</li>
+        </ul>
+      </article>
+    </section>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-links">
+      <a href="/" data-i18n="nav.appHome">Apps</a>
+      <a href="/autonotice/" data-i18n="nav.home">首页</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
+    </div>
+    <div>© 2026 darkrio Studio · AutoNotice Support</div>
+  </footer>
+  <script src="/i18n.js"></script>
+</body>
+</html>
