@@ -285,7 +285,7 @@
         </p>
         <div class="meta">
           <div class="meta-item" data-i18n="privacy.product">适用产品：AutoLedger</div>
-          <div class="meta-item" data-i18n="privacy.updated">最后更新：2026-07-01</div>
+          <div class="meta-item" data-i18n="privacy.updated">最后更新：2026-07-09</div>
           <div class="meta-item" data-i18n="privacy.localFirst">本地优先，云端能力可选</div>
         </div>
       </section>
@@ -313,6 +313,7 @@
             <li>您手动新增或编辑的账单、酒店消费、订阅、账本、分类、商户别名、备注和标签</li>
             <li>您通过快捷指令、分享扩展、剪贴板、语音输入或 App Intents 提供的文本或图片</li>
             <li>您选择启用同步、备份、Pro 订阅或云端水单收件箱时所需的最小状态信息</li>
+            <li>匿名的产品交互、性能 bucket、错误码、功能入口和服务状态信息，用于聚合判断 App 稳定性、主要使用路径和常见卡点</li>
           </ul>
 
           <div class="callout">
@@ -367,9 +368,10 @@
           <h2>六、权限和基础设施服务</h2>
           <p>根据您所使用的功能，AutoLedger 可能会请求照片、相机、麦克风/语音输入、通知、剪贴板和 iCloud 等系统权限。</p>
           <p>某些您主动启用的能力需要依赖 Apple、Cloudflare 或您配置的外部服务。</p>
+          <p>匿名聚合信息仅用于发布前质量判断、运营观测、常见卡点分析，以及未来年度总结中的 App 层综合背景，不用于广告画像。</p>
           <ul>
             <li>Apple：App Store 订阅、StoreKit 校验、iCloud 同步 / 备份、APNs 推送和系统权限</li>
-            <li>Cloudflare：getautoledger.app 网站托管、Email Routing、Worker、D1、R2 和 Queue，用于云端水单收件箱候选处理</li>
+            <li>Cloudflare：getautoledger.app 网站托管、Email Routing、Worker、D1、R2、Queue、Common API、匿名 analytics 写入和受 Zero Trust 保护的运营观测面板</li>
             <li>邮箱服务商：仅在您配置本地邮箱扫描时，由您的设备连接相应邮箱服务</li>
             <li>可选外部识别或 AI 服务：仅在您主动配置或开启相关能力时使用，并以完成该功能所需的最小数据为限</li>
           </ul>
@@ -386,6 +388,7 @@
             <li>本地邮箱授权可在 App 中移除，移除后会停止新的邮箱扫描并删除本机保存的授权码</li>
             <li>云端水单候选可在 App 中标记为已处理或删除；候选 PDF 和元数据会按用户操作、订阅状态或服务端清理策略删除或过期</li>
             <li>收件箱 raw token 只返回给 App 一次，服务端保存的是 token 哈希；轮换地址后旧 token 会被标记为不可继续使用</li>
+            <li>匿名 analytics 事件默认按 90 天保留，只保存固定 allow-list 内的枚举、bucket、错误码和状态字段，不保存金额、商户、截图、PDF、邮箱正文、酒店标识、房号、精确位置、OCR 原文、StoreKit 交易标识或支付数据</li>
           </ul>
         </div>
 

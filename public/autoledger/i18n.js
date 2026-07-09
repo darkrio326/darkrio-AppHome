@@ -105,7 +105,7 @@
         intro:
           "AutoLedger 以本地优先为核心设计，并为 AutoLedger Pro 提供可选的自动化能力。本页面说明我们会处理哪些信息、为什么处理，以及您可以如何管理这些信息。",
         product: "适用产品：AutoLedger",
-        updated: "最后更新：2026-07-01",
+        updated: "最后更新：2026-07-09",
         localFirst: "本地优先，云端能力可选",
         footer: "© 2026 AutoLedger · 隐私政策",
         sections: [
@@ -128,6 +128,7 @@
               "您手动新增或编辑的账单、酒店消费、订阅、账本、分类、商户别名、备注和标签",
               "您通过快捷指令、分享扩展、剪贴板、语音输入或 App Intents 提供的文本或图片",
               "您选择启用同步、备份、Pro 订阅或云端水单收件箱时所需的最小状态信息",
+              "匿名的产品交互、性能 bucket、错误码、功能入口和服务状态信息，用于聚合判断 App 稳定性、主要使用路径和常见卡点",
             ],
             callout: "我们只在记账、识别、整理、同步、订阅校验、云端候选下载、故障排查和安全防滥用所必需的范围内处理信息，不出售个人数据，也不用于广告画像。",
           },
@@ -180,6 +181,7 @@
               "完成 App Store 订阅校验、服务端 token 发放、到期控制和安全防滥用",
               "发送您主动启用的通知、状态反馈或云端候选提醒",
               "排查故障、改进识别准确性和提升产品稳定性",
+              "生成不指向个人的匿名聚合统计，例如功能入口分布、导入完成率、Common API 状态、Pro 入口行为和隐私 payload 拦截次数，用于发布前质量判断、运营观测和未来年度总结中的 App 层综合背景",
             ],
           },
           {
@@ -202,7 +204,7 @@
             ],
             list: [
               "Apple：App Store 订阅、StoreKit 校验、iCloud 同步 / 备份、APNs 推送和系统权限",
-              "Cloudflare：getautoledger.app 网站托管、Email Routing、Worker、D1、R2 和 Queue，用于云端水单收件箱候选处理",
+              "Cloudflare：getautoledger.app 网站托管、Email Routing、Worker、D1、R2、Queue、Common API、匿名 analytics 写入和受 Zero Trust 保护的运营观测面板",
               "邮箱服务商：仅在您配置本地邮箱扫描时，由您的设备连接相应邮箱服务",
               "可选外部识别或 AI 服务：仅在您主动配置或开启相关能力时使用，并以完成该功能所需的最小数据为限",
             ],
@@ -218,6 +220,7 @@
               "本地邮箱授权可在 App 中移除，移除后会停止新的邮箱扫描并删除本机保存的授权码",
               "云端水单候选可在 App 中标记为已处理或删除；候选 PDF 和元数据会按用户操作、订阅状态或服务端清理策略删除或过期",
               "收件箱 raw token 只返回给 App 一次，服务端保存的是 token 哈希；轮换地址后旧 token 会被标记为不可继续使用",
+              "匿名 analytics 事件默认按 90 天保留，只保存固定 allow-list 内的枚举、bucket、错误码和状态字段，不保存金额、商户、截图、PDF、邮箱正文、酒店标识、房号、精确位置、OCR 原文、StoreKit 交易标识或支付数据",
             ],
           },
           {
@@ -605,7 +608,7 @@
     intro:
       "AutoLedger 以本機優先為核心設計，並為 AutoLedger Pro 提供可選的自動化能力。本頁面說明我們會處理哪些資訊、為什麼處理，以及您可以如何管理這些資訊。",
     product: "適用產品：AutoLedger",
-    updated: "最後更新：2026-07-01",
+    updated: "最後更新：2026-07-09",
     localFirst: "本機優先，雲端能力可選",
     footer: "© 2026 AutoLedger · 隱私政策",
   });
@@ -615,7 +618,7 @@
     intro:
       "AutoLedger is designed to be local-first and offers optional automation through AutoLedger Pro. This page explains what information may be processed, why it is processed, and how you can manage it.",
     product: "Product: AutoLedger",
-    updated: "Last updated: 2026-07-01",
+    updated: "Last updated: 2026-07-09",
     localFirst: "Local-first, optional cloud automation",
     footer: "© 2026 AutoLedger · Privacy Policy",
     sections: [
@@ -638,6 +641,7 @@
           "Ledger entries, hotel stays, subscriptions, ledgers, categories, merchant aliases, notes, and tags you add or edit",
           "Text or images you provide through Shortcuts, share extensions, clipboard import, voice input, or App Intents",
           "Minimal status information needed when you enable sync, backup, Pro subscription features, or the cloud hotel folio inbox",
+          "Anonymous product interaction, performance buckets, error codes, feature-surface, and service-status information used only in aggregate to understand app stability, main usage paths, and common friction points",
         ],
         callout:
           "We process information only as needed for logging, recognition, organization, sync, subscription verification, cloud candidate download, troubleshooting, and abuse prevention. We do not sell personal data or use it for advertising profiles.",
@@ -691,6 +695,7 @@
           "Verify App Store subscriptions, issue service tokens, enforce expiration, and prevent abuse",
           "Send notifications, status feedback, or cloud candidate reminders when you enable them",
           "Troubleshoot issues, improve recognition quality, and improve stability",
+          "Produce anonymous aggregate statistics that are not tied to an individual, such as feature entry distribution, import completion rate, Common API status, Pro entry behavior, and privacy payload blocks, for release quality checks, operational observation, and app-level context in future year-in-review summaries",
         ],
       },
       {
@@ -713,7 +718,7 @@
         ],
         list: [
           "Apple: App Store subscriptions, StoreKit verification, iCloud sync / backup, APNs notifications, and system permissions",
-          "Cloudflare: getautoledger.app hosting, Email Routing, Workers, D1, R2, and Queues for the cloud hotel folio inbox",
+          "Cloudflare: getautoledger.app hosting, Email Routing, Workers, D1, R2, Queues, Common API, anonymous analytics ingestion, and the Zero Trust protected operational dashboard",
           "Email providers: only when you configure local email scanning, your device connects to the relevant mailbox provider",
           "Optional external recognition or AI services: only when you configure or enable such features, limited to the minimum data needed for that feature",
         ],
@@ -729,6 +734,7 @@
           "Local email authorization can be removed in the app, which stops new scans and removes the locally stored credential",
           "Cloud folio candidates can be marked processed or deleted in the app; candidate PDFs and metadata are deleted or expired according to your action, subscription state, or service cleanup rules",
           "The raw inbox token is returned to the app only once. The server stores a token hash, and old tokens are disabled when you rotate the address",
+          "Anonymous analytics events are retained for 90 days by default and contain only fixed allow-list enums, buckets, error codes, and status fields. They do not store amounts, merchants, screenshots, PDFs, email body, hotel identifiers, room numbers, precise location, OCR text, StoreKit transaction identifiers, or payment data",
         ],
       },
       {
@@ -773,7 +779,7 @@
     intro:
       "AutoLedger はローカル優先の設計を中心にしつつ、AutoLedger Pro の任意の自動化機能を提供します。このページでは、処理される可能性のある情報、その目的、利用者が管理できる内容について説明します。",
     product: "対象製品：AutoLedger",
-    updated: "最終更新：2026-07-01",
+    updated: "最終更新：2026-07-09",
     localFirst: "ローカル優先、クラウド機能は任意",
     footer: "© 2026 AutoLedger · プライバシーポリシー",
     sections: [
@@ -796,6 +802,7 @@
           "利用者が追加または編集する記録、ホテル滞在、サブスクリプション、台帳、分類、店舗別名、メモ、タグ",
           "ショートカット、共有拡張、クリップボード、音声入力、App Intents を通じて提供されるテキストまたは画像",
           "同期、バックアップ、Pro サブスクリプション機能、クラウドホテル明細受信箱を有効にした場合に必要な最小限の状態情報",
+          "アプリの安定性、主な利用経路、よくあるつまずき箇所を集計で把握するための匿名のプロダクト操作、パフォーマンス bucket、エラーコード、機能入口、サービス状態情報",
         ],
         callout:
           "記録、認識、整理、同期、サブスクリプション確認、クラウド候補のダウンロード、不具合調査、不正利用防止に必要な範囲でのみ処理します。個人データを販売したり、広告プロファイルに利用したりしません。",
@@ -849,6 +856,7 @@
           "App Store サブスクリプション確認、サービストークン発行、有効期限管理、不正利用防止のため",
           "利用者が有効にした通知、状態フィードバック、クラウド候補リマインダーを送信するため",
           "不具合調査、認識品質の改善、安定性向上のため",
+          "機能入口の分布、取り込み完了率、Common API 状態、Pro 入口行動、プライバシー payload ブロック数など、個人に結びつかない匿名集計を作成し、リリース品質確認、運用観測、将来の年間まとめにおけるアプリ全体の背景情報に利用するため",
         ],
       },
       {
@@ -871,7 +879,7 @@
         ],
         list: [
           "Apple：App Store サブスクリプション、StoreKit 確認、iCloud 同期 / バックアップ、APNs 通知、システム権限",
-          "Cloudflare：getautoledger.app のホスティング、Email Routing、Workers、D1、R2、Queues によるクラウドホテル明細受信箱",
+          "Cloudflare：getautoledger.app のホスティング、Email Routing、Workers、D1、R2、Queues、Common API、匿名 analytics 取り込み、Zero Trust で保護された運用観測ダッシュボード",
           "メールプロバイダ：ローカルメールスキャンを設定した場合のみ、端末が該当メールサービスへ接続します",
           "任意の外部認識または AI サービス：利用者が設定または有効化した場合のみ使用し、該当機能に必要な最小限のデータに限定します",
         ],
@@ -887,6 +895,7 @@
           "ローカルメール認可はアプリ内で削除でき、削除すると新しいスキャンが停止し、ローカルに保存された認証情報も削除されます",
           "クラウド明細候補はアプリ内で処理済みまたは削除にできます。候補 PDF とメタデータは利用者の操作、サブスクリプション状態、またはサービスのクリーンアップ規則に従って削除または期限切れになります",
           "raw 受信箱 token はアプリに一度だけ返されます。サーバーは token ハッシュを保存し、アドレスをローテーションすると古い token は無効化されます",
+          "匿名 analytics イベントは初期設定で 90 日間保持され、固定 allow-list 内の列挙値、bucket、エラーコード、状態フィールドのみを保存します。金額、加盟店、スクリーンショット、PDF、メール本文、ホテル識別子、部屋番号、正確な位置、OCR 原文、StoreKit 取引識別子、支払いデータは保存しません",
         ],
       },
       {
@@ -931,7 +940,7 @@
     intro:
       "AutoLedger는 로컬 우선 설계를 기반으로 하며, AutoLedger Pro를 통해 선택적인 자동화 기능을 제공합니다. 이 페이지는 어떤 정보가 처리될 수 있는지, 왜 처리되는지, 사용자가 어떻게 관리할 수 있는지 설명합니다.",
     product: "적용 제품: AutoLedger",
-    updated: "마지막 업데이트: 2026-07-01",
+    updated: "마지막 업데이트: 2026-07-09",
     localFirst: "로컬 우선, 클라우드 기능은 선택 사항",
     footer: "© 2026 AutoLedger · 개인정보 처리방침",
     sections: [
@@ -954,6 +963,7 @@
           "사용자가 추가하거나 편집하는 기록, 호텔 이용 내역, 구독, 장부, 카테고리, 가맹점 별칭, 메모, 태그",
           "단축어, 공유 확장, 클립보드, 음성 입력 또는 App Intents를 통해 제공하는 텍스트나 이미지",
           "동기화, 백업, Pro 구독 기능 또는 클라우드 호텔 명세서 받은편지함을 사용할 때 필요한 최소 상태 정보",
+          "앱 안정성, 주요 사용 경로, 자주 막히는 지점을 집계로 파악하기 위한 익명의 제품 상호작용, 성능 bucket, 오류 코드, 기능 진입점, 서비스 상태 정보",
         ],
         callout:
           "정보는 기록, 인식, 정리, 동기화, 구독 확인, 클라우드 후보 다운로드, 문제 해결, 악용 방지에 필요한 범위에서만 처리됩니다. 개인 데이터를 판매하거나 광고 프로파일링에 사용하지 않습니다.",
@@ -1007,6 +1017,7 @@
           "App Store 구독 확인, 서비스 token 발급, 만료 제어 및 악용 방지를 위해",
           "사용자가 활성화한 알림, 상태 피드백 또는 클라우드 후보 알림을 보내기 위해",
           "문제 해결, 인식 품질 개선 및 제품 안정성 향상을 위해",
+          "기능 진입 분포, 가져오기 완료율, Common API 상태, Pro 진입 행동, 개인정보 payload 차단 수 같은 개인과 연결되지 않는 익명 집계 통계를 만들고, 출시 품질 확인, 운영 관측, 향후 연간 요약의 앱 전체 배경 정보로 활용하기 위해",
         ],
       },
       {
@@ -1029,7 +1040,7 @@
         ],
         list: [
           "Apple: App Store 구독, StoreKit 확인, iCloud 동기화/백업, APNs 알림 및 시스템 권한",
-          "Cloudflare: getautoledger.app 호스팅, Email Routing, Workers, D1, R2, Queues를 통한 클라우드 호텔 명세서 받은편지함 처리",
+          "Cloudflare: getautoledger.app 호스팅, Email Routing, Workers, D1, R2, Queues, Common API, 익명 analytics 수집, Zero Trust로 보호되는 운영 관측 대시보드",
           "이메일 제공업체: 로컬 이메일 스캔을 설정한 경우에만 사용자의 기기가 해당 메일 서비스에 연결합니다",
           "선택적 외부 인식 또는 AI 서비스: 사용자가 직접 설정하거나 켠 경우에만 사용하며, 해당 기능에 필요한 최소 데이터로 제한합니다",
         ],
@@ -1045,6 +1056,7 @@
           "로컬 이메일 인증은 앱에서 제거할 수 있으며, 제거하면 새 스캔이 중단되고 로컬에 저장된 인증 정보도 삭제됩니다",
           "클라우드 명세서 후보는 앱에서 처리됨으로 표시하거나 삭제할 수 있습니다. 후보 PDF와 메타데이터는 사용자의 조작, 구독 상태 또는 서비스 정리 정책에 따라 삭제되거나 만료됩니다",
           "원본 받은편지함 token은 앱에 한 번만 반환됩니다. 서버는 token 해시를 저장하며, 주소를 교체하면 이전 token은 비활성화됩니다",
+          "익명 analytics 이벤트는 기본적으로 90일 동안 보관되며 고정 allow-list의 열거값, bucket, 오류 코드, 상태 필드만 저장합니다. 금액, 가맹점, 스크린샷, PDF, 이메일 본문, 호텔 식별자, 객실 번호, 정확한 위치, OCR 원문, StoreKit 거래 식별자, 결제 데이터는 저장하지 않습니다",
         ],
       },
       {
@@ -1269,6 +1281,28 @@
       ["管理", "管理"],
       ["删除", "刪除"],
       ["停止", "停止"],
+      ["观测", "觀測"],
+      ["聚合", "彙總"],
+      ["交互", "互動"],
+      ["性能", "效能"],
+      ["错误码", "錯誤碼"],
+      ["功能入口", "功能入口"],
+      ["年度总结", "年度總結"],
+      ["运营", "營運"],
+      ["常见卡点", "常見卡點"],
+      ["写入", "寫入"],
+      ["面板", "面板"],
+      ["精确位置", "精確位置"],
+      ["交易标识", "交易識別碼"],
+      ["支付数据", "支付資料"],
+      ["状态", "狀態"],
+      ["判断", "判斷"],
+      ["路径", "路徑"],
+      ["枚举", "列舉"],
+      ["字段", "欄位"],
+      ["酒店标识", "酒店識別碼"],
+      ["房号", "房號"],
+      ["内的", "內的"],
       ["卸载", "解除安裝"],
     ];
     const convert = (value) => {
