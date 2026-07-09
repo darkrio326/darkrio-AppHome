@@ -14,6 +14,8 @@
         autonoticeDescription: "AutoNotice 是一个轻量模块化提醒 App。0.1 先从 Weather Notice 开始，后续扩展更多提醒模块与 Pro 自定义模块。",
         autonoticeSupportTitle: "AutoNotice 技术支持",
         autonoticeSupportDescription: "AutoNotice 技术支持页面，包含常见问题、反馈信息和联系邮箱。",
+        autonoticeWebhookTitle: "AutoNotice Webhook 使用方法",
+        autonoticeWebhookDescription: "AutoNotice Developer Webhook 使用引导，面向希望用脚本、Connector 或自动化服务向自己设备发送通知的用户。",
         autonoticePrivacyTitle: "AutoNotice 隐私政策",
         autonoticePrivacyDescription: "AutoNotice 隐私政策，说明位置、通知、天气提醒和支持型 IAP 相关数据处理方式。",
       },
@@ -35,6 +37,7 @@
         privacy: "隐私",
         contact: "联系",
         getHelp: "获取帮助",
+        testFlight: "加入 TestFlight",
         copyEmail: "复制支持邮箱",
       },
       state: {
@@ -110,6 +113,7 @@
         updated: "最后更新：2026-07-03",
         contactTitle: "联系邮箱",
         contactBody: "如需反馈问题、提交建议或说明审核测试情况，请通过邮箱联系：",
+        testFlightBody: "如果你要安装内部测试版本，可以通过 TestFlight 链接加入：",
         cards: [
           {
             title: "通知没有到达怎么办？",
@@ -143,6 +147,66 @@
               "AutoNotice 的支持型 IAP 是自愿支持开发者的 consumable 商品。",
               "购买不会解锁额外功能，也不会影响天气提醒、通知投递、历史记录或设置。",
               "购买、退款和付款方式由 Apple App Store 处理。",
+            ],
+          },
+        ],
+      },
+      webhookSupport: {
+        eyebrow: "AutoNotice Webhook",
+        title: "Webhook 使用方法",
+        lead: "AutoNotice Webhook 面向有一定程序开发能力的用户。你可以用自己的脚本、Connector 或自动化服务向自己的 iPhone 发送标准通知。",
+        version: "适用版本：AutoNotice v0.2 TestFlight",
+        updated: "最后更新：2026-07-09",
+        boundaryTitle: "能力边界",
+        boundaryBody: "基础 Webhook 免费提供，不属于 AutoNotice 付费门槛。它只负责把符合格式的通知投递到用户自己的设备，不负责代替第三方服务抓取数据、保存业务账号或判断业务条件。",
+        locateTitle: "在 App 中找到 Webhook",
+        locateSteps: [
+          "安装 AutoNotice v0.2 TestFlight 版本。",
+          "打开 AutoNotice，进入设置。",
+          "找到 Webhook 通知 section。",
+          "复制 Webhook 地址和 Webhook Token。",
+          "把它们填入你的脚本、Connector 或本地自动化工具。",
+        ],
+        fieldsTitle: "请求字段",
+        fields: [
+          ["title", "通知标题。"],
+          ["body", "通知正文。"],
+          ["module", "模块名称，例如 life、utility、developer。"],
+          ["type", "事件类型，例如 state_grid_balance_low。"],
+          ["severity", "info、warning、critical 等严重级别。"],
+          ["dedupKey", "用于去重和冷却的稳定键。"],
+          ["payload", "可选 JSON 对象，用于保存业务上下文。"],
+        ],
+        curlTitle: "curl 示例",
+        curlExample: `curl -X POST "$AUTONOTICE_WEBHOOK_URL" \\
+  -H "Authorization: Bearer $AUTONOTICE_TOKEN" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "title": "电费余额不足",
+    "body": "当前电费余额低于 50 元，记得充值。",
+    "module": "life",
+    "type": "utility_balance",
+    "severity": "warning",
+    "dedupKey": "stategrid-home-balance-low-20260709",
+    "payload": {
+      "source": "StateGridConnector"
+    }
+  }'`,
+        cards: [
+          {
+            title: "安全建议",
+            items: [
+              "Webhook Token 是敏感凭据，请像密码一样保存。",
+              "不要把 Token 提交到 GitHub、日志、截图或公开 issue。",
+              "如果 Token 泄露，请在 AutoNotice 中重新生成或停用旧凭据。",
+            ],
+          },
+          {
+            title: "适合的场景",
+            items: [
+              "本地脚本完成判断后推送通知。",
+              "个人自托管 Connector 发出状态变化提醒。",
+              "可信小范围自动化服务向自己的设备发送低频通知。",
             ],
           },
         ],
@@ -248,6 +312,8 @@
         autonoticeDescription: "AutoNotice is a lightweight modular reminder app. Version 0.1 starts with Weather Notice, with room for more notice modules and Pro custom modules.",
         autonoticeSupportTitle: "AutoNotice Support",
         autonoticeSupportDescription: "AutoNotice support page with common questions, feedback guidance, and contact information.",
+        autonoticeWebhookTitle: "AutoNotice Webhook Usage Guide",
+        autonoticeWebhookDescription: "A practical guide to AutoNotice Developer Webhook for users who want scripts, connectors, or automation services to send notices to their own device.",
         autonoticePrivacyTitle: "AutoNotice Privacy Policy",
         autonoticePrivacyDescription: "AutoNotice privacy policy covering location, notifications, weather notices, and support IAP data handling.",
       },
@@ -269,6 +335,7 @@
         privacy: "Privacy",
         contact: "Contact",
         getHelp: "Get help",
+        testFlight: "Join TestFlight",
         copyEmail: "Copy support email",
       },
       state: {
@@ -344,6 +411,7 @@
         updated: "Last updated: July 3, 2026",
         contactTitle: "Contact email",
         contactBody: "For bug reports, suggestions, or review-test details, contact:",
+        testFlightBody: "To install the internal testing build, join through TestFlight:",
         cards: [
           {
             title: "What if notifications do not arrive?",
@@ -377,6 +445,66 @@
               "AutoNotice support IAP items are voluntary consumable products for supporting development.",
               "Purchases do not unlock extra features and do not affect weather notices, delivery, history, or settings.",
               "Purchases, refunds, and payment methods are handled by Apple App Store.",
+            ],
+          },
+        ],
+      },
+      webhookSupport: {
+        eyebrow: "AutoNotice Webhook",
+        title: "Webhook Usage Guide",
+        lead: "AutoNotice Webhook is intended for users with some programming experience. Your own scripts, connectors, or automation services can send standard notices to your iPhone.",
+        version: "Applies to: AutoNotice v0.2 TestFlight",
+        updated: "Last updated: July 9, 2026",
+        boundaryTitle: "Scope",
+        boundaryBody: "Basic Webhook is free and is not behind an AutoNotice payment gate. It only delivers valid notification payloads to the user's own device. It does not fetch third-party data, store business accounts, or decide business conditions for you.",
+        locateTitle: "Find Webhook in the App",
+        locateSteps: [
+          "Install the AutoNotice v0.2 TestFlight build.",
+          "Open AutoNotice and go to Settings.",
+          "Find the Webhook Notifications section.",
+          "Copy the Webhook URL and Webhook Token.",
+          "Paste them into your script, connector, or local automation tool.",
+        ],
+        fieldsTitle: "Request Fields",
+        fields: [
+          ["title", "Notification title."],
+          ["body", "Notification body."],
+          ["module", "Module name, for example life, utility, or developer."],
+          ["type", "Event type, for example state_grid_balance_low."],
+          ["severity", "Severity such as info, warning, or critical."],
+          ["dedupKey", "Stable key used for deduplication and cooldown."],
+          ["payload", "Optional JSON object for business context."],
+        ],
+        curlTitle: "curl Example",
+        curlExample: `curl -X POST "$AUTONOTICE_WEBHOOK_URL" \\
+  -H "Authorization: Bearer $AUTONOTICE_TOKEN" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "title": "Electricity balance is low",
+    "body": "Current electricity balance is below 50 CNY.",
+    "module": "life",
+    "type": "utility_balance",
+    "severity": "warning",
+    "dedupKey": "stategrid-home-balance-low-20260709",
+    "payload": {
+      "source": "StateGridConnector"
+    }
+  }'`,
+        cards: [
+          {
+            title: "Security Notes",
+            items: [
+              "The Webhook Token is a secret. Store it like a password.",
+              "Do not commit the token to GitHub, logs, screenshots, or public issues.",
+              "If a token leaks, regenerate or disable the old credential in AutoNotice.",
+            ],
+          },
+          {
+            title: "Good Fits",
+            items: [
+              "A local script sends a notice after it makes its own decision.",
+              "A personal self-hosted connector sends low-frequency state changes.",
+              "A trusted small-scope automation service sends notices to your own device.",
             ],
           },
         ],
@@ -502,6 +630,7 @@
 
   function pageMetaKey() {
     const path = window.location.pathname;
+    if (path.startsWith("/autonotice/support/webhook")) return "autonoticeWebhook";
     if (path.startsWith("/autonotice/support")) return "autonoticeSupport";
     if (path.startsWith("/autonotice/privacy")) return "autonoticePrivacy";
     if (path.startsWith("/autonotice")) return "autonotice";
@@ -525,8 +654,49 @@
         <h2>${data.contactTitle}</h2>
         <p>${data.contactBody}</p>
         <p><a class="contact-box" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
+        <p>${data.testFlightBody}</p>
+        <p><a class="contact-box" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer">${(messages[locale] || messages["zh-Hans"]).action.testFlight}</a></p>
       </section>
       <section class="grid section" aria-label="Support topics">
+        ${cards}
+      </section>
+    `;
+  }
+
+  function renderWebhookSupport(locale) {
+    const data = (messages[locale] || messages["zh-Hans"]).webhookSupport;
+    const container = document.querySelector("[data-autonotice-webhook-sections]");
+    if (!container || !data) return;
+
+    const steps = data.locateSteps.map((item) => `<li>${item}</li>`).join("");
+    const fields = data.fields
+      .map(([name, description]) => `<div><dt>${name}</dt><dd>${description}</dd></div>`)
+      .join("");
+    const cards = data.cards
+      .map((card) => {
+        const items = card.items.map((item) => `<li>${item}</li>`).join("");
+        return `<article class="card wide"><h3>${card.title}</h3><ul>${items}</ul></article>`;
+      })
+      .join("");
+
+    container.innerHTML = `
+      <section class="doc-card">
+        <h2>${data.boundaryTitle}</h2>
+        <p>${data.boundaryBody}</p>
+      </section>
+      <section class="doc-card">
+        <h2>${data.locateTitle}</h2>
+        <ol>${steps}</ol>
+      </section>
+      <section class="doc-card">
+        <h2>${data.fieldsTitle}</h2>
+        <dl class="field-list">${fields}</dl>
+      </section>
+      <section class="doc-card">
+        <h2>${data.curlTitle}</h2>
+        <pre><code>${data.curlExample}</code></pre>
+      </section>
+      <section class="grid section" aria-label="Webhook guidance">
         ${cards}
       </section>
     `;
@@ -590,6 +760,7 @@
     }
 
     renderSupport(current);
+    renderWebhookSupport(current);
     renderPrivacy(current);
   }
 

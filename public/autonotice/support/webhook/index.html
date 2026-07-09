@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoNotice Webhook 使用方法</title>
+  <meta name="description" content="AutoNotice Developer Webhook 使用引导，面向希望用脚本、Connector 或自动化服务向自己设备发送通知的用户。" />
+  <link rel="canonical" href="https://app.darkrio326.top/autonotice/support/webhook/" />
+  <meta property="og:title" content="AutoNotice Webhook 使用方法" />
+  <meta property="og:description" content="AutoNotice Developer Webhook 使用引导，面向希望用脚本、Connector 或自动化服务向自己设备发送通知的用户。" />
+  <meta property="og:url" content="https://app.darkrio326.top/autonotice/support/webhook/" />
+  <meta name="theme-color" content="#1d74f5" />
+  <link rel="stylesheet" href="/autonotice/styles.css" />
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="/autonotice/">
+      <img src="/autonotice/assets/icon.png" alt="" />
+      <span>AutoNotice</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/autonotice/" data-i18n="nav.home">首页</a>
+      <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top" data-i18n="nav.contact">联系开发者</a>
+      <select class="locale-switch" data-locale-select aria-label="Language">
+        <option value="zh-Hans">简中</option>
+        <option value="en">EN</option>
+      </select>
+    </nav>
+  </header>
+
+  <main class="shell doc-wrap">
+    <section class="doc-hero">
+      <div class="eyebrow" data-i18n="webhookSupport.eyebrow">AutoNotice Webhook</div>
+      <h1 data-i18n="webhookSupport.title">Webhook 使用方法</h1>
+      <p class="doc-lead" data-i18n="webhookSupport.lead">
+        AutoNotice Webhook 面向有一定程序开发能力的用户。你可以用自己的脚本、Connector 或自动化服务向自己的 iPhone 发送标准通知。
+      </p>
+      <div class="meta-row">
+        <span class="meta-pill" data-i18n="webhookSupport.version">适用版本：AutoNotice v0.2 TestFlight</span>
+        <span class="meta-pill" data-i18n="webhookSupport.updated">最后更新：2026-07-09</span>
+      </div>
+    </section>
+
+    <div data-autonotice-webhook-sections>
+      <section class="doc-card">
+        <h2>能力边界</h2>
+        <p>基础 Webhook 免费提供，不属于 AutoNotice 付费门槛。它只负责把符合格式的通知投递到用户自己的设备，不负责代替第三方服务抓取数据、保存业务账号或判断业务条件。</p>
+      </section>
+
+      <section class="doc-card">
+        <h2>在 App 中找到 Webhook</h2>
+        <ol>
+          <li>安装 AutoNotice v0.2 TestFlight 版本。</li>
+          <li>打开 AutoNotice，进入设置。</li>
+          <li>找到 Webhook 通知 section。</li>
+          <li>复制 Webhook 地址和 Webhook Token。</li>
+          <li>把它们填入你的脚本、Connector 或本地自动化工具。</li>
+        </ol>
+      </section>
+
+      <section class="doc-card">
+        <h2>请求字段</h2>
+        <dl class="field-list">
+          <div><dt>title</dt><dd>通知标题。</dd></div>
+          <div><dt>body</dt><dd>通知正文。</dd></div>
+          <div><dt>module</dt><dd>模块名称，例如 life、utility、developer。</dd></div>
+          <div><dt>type</dt><dd>事件类型，例如 state_grid_balance_low。</dd></div>
+          <div><dt>severity</dt><dd>info、warning、critical 等严重级别。</dd></div>
+          <div><dt>dedupKey</dt><dd>用于去重和冷却的稳定键。</dd></div>
+          <div><dt>payload</dt><dd>可选 JSON 对象，用于保存业务上下文。</dd></div>
+        </dl>
+      </section>
+
+      <section class="doc-card">
+        <h2>curl 示例</h2>
+        <pre><code>curl -X POST "$AUTONOTICE_WEBHOOK_URL" \
+  -H "Authorization: Bearer $AUTONOTICE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "电费余额不足",
+    "body": "当前电费余额低于 50 元，记得充值。",
+    "module": "life",
+    "type": "utility_balance",
+    "severity": "warning",
+    "dedupKey": "stategrid-home-balance-low-20260709",
+    "payload": {
+      "source": "StateGridConnector"
+    }
+  }'</code></pre>
+      </section>
+
+      <section class="grid section" aria-label="Webhook guidance">
+        <article class="card wide">
+          <h3>安全建议</h3>
+          <ul>
+            <li>Webhook Token 是敏感凭据，请像密码一样保存。</li>
+            <li>不要把 Token 提交到 GitHub、日志、截图或公开 issue。</li>
+            <li>如果 Token 泄露，请在 AutoNotice 中重新生成或停用旧凭据。</li>
+          </ul>
+        </article>
+        <article class="card wide">
+          <h3>适合的场景</h3>
+          <ul>
+            <li>本地脚本完成判断后推送通知。</li>
+            <li>个人自托管 Connector 发出状态变化提醒。</li>
+            <li>可信小范围自动化服务向自己的设备发送低频通知。</li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-links">
+      <a href="/" data-i18n="nav.appHome">Apps</a>
+      <a href="/autonotice/" data-i18n="nav.home">首页</a>
+      <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
+      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
+      <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
+    </div>
+    <div>© 2026 darkrio Studio · AutoNotice Webhook</div>
+  </footer>
+  <script src="/i18n.js"></script>
+</body>
+</html>

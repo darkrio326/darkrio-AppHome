@@ -354,6 +354,48 @@ h2 {
   margin: 0 0 12px;
 }
 
+.doc-card pre {
+  overflow: auto;
+  margin: 14px 0 0;
+  border: 1px solid rgba(16, 26, 43, 0.14);
+  border-radius: 8px;
+  background: #101a2b;
+  padding: 18px;
+  color: #f8fbff;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.doc-card code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+.field-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.field-list div {
+  display: grid;
+  grid-template-columns: minmax(98px, 0.34fr) minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(29, 116, 245, 0.04);
+  padding: 12px;
+}
+
+.field-list dt {
+  color: var(--ink);
+  font-weight: 820;
+}
+
+.field-list dd {
+  margin: 0;
+  color: var(--muted);
+}
+
 .contact-box {
   display: inline-flex;
   align-items: center;
@@ -432,5 +474,10 @@ footer {
   .section-header p,
   .doc-lead {
     font-size: 16px;
+  }
+
+  .field-list div {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
