@@ -9,6 +9,7 @@
   <meta property="og:title" content="AutoNotice 技术支持" />
   <meta property="og:url" content="https://app.darkrio326.top/autonotice/support/" />
   <meta name="theme-color" content="#1d74f5" />
+  <link rel="icon" href="/autonotice/assets/icon.png" />
   <link rel="stylesheet" href="/autonotice/styles.css" />
 </head>
 <body>
@@ -33,11 +34,11 @@
       <div class="eyebrow" data-i18n="support.eyebrow">AutoNotice Support</div>
       <h1 data-i18n="support.title">技术支持</h1>
       <p class="doc-lead" data-i18n="support.lead">
-        如果你在使用 AutoNotice 时遇到天气概览、位置、通知、提醒规则或支持型 IAP 相关问题，可以先查看下方说明，也可以直接通过邮箱联系。
+        如果你在使用天气提醒、到期提醒、Developer Webhook、通知历史或支持型 IAP 时遇到问题，可以先查看下方说明，也可以直接通过邮箱联系。
       </p>
       <div class="meta-row">
-        <span class="meta-pill" data-i18n="support.version">适用版本：0.1</span>
-        <span class="meta-pill" data-i18n="support.updated">最后更新：2026-07-03</span>
+        <span class="meta-pill" data-i18n="support.version">适用版本：0.2</span>
+        <span class="meta-pill" data-i18n="support.updated">最后更新：2026-07-15</span>
       </div>
     </section>
 
@@ -48,6 +49,8 @@
       <p><a class="contact-box" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
       <p>如果你要安装内部测试版本，可以通过 TestFlight 链接加入：</p>
       <p><a class="contact-box" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer">加入 TestFlight</a></p>
+      <p>开发者可以查看完整的 Webhook 请求格式、安全边界与 curl 示例：</p>
+      <p><a class="contact-box" href="/autonotice/support/webhook/">打开 Webhook 使用指南</a></p>
     </section>
 
     <section class="grid section" aria-label="Support topics">
@@ -55,18 +58,38 @@
         <h3>通知没有到达怎么办？</h3>
         <ul>
           <li>确认系统通知权限已经允许 AutoNotice 发送通知。</li>
-          <li>确认已选择位置或城市，并已开启天气提醒。</li>
-          <li>进入天气提醒模块后，使用“强制更新提醒规则”同步当前规则。</li>
+          <li>天气提醒需要选择位置并至少开启一种天气变化；修改位置、阈值或开关后会自动同步，也可使用“强制更新提醒规则”。</li>
+          <li>到期提醒优先使用本地通知，请检查到期时间、提前量和重复周期。</li>
           <li>TestFlight 与 App Store 版本使用 APNs production；Xcode 直接运行的 Debug 版本使用 APNs sandbox。</li>
         </ul>
       </article>
 
       <article class="card wide">
-        <h3>天气概览或城市不准确怎么办？</h3>
+        <h3>天气、位置或雷达数据不准确怎么办？</h3>
         <ul>
           <li>使用当前位置时，请确认系统定位权限可用。</li>
-          <li>手动选择城市时，AutoNotice 会使用 Common API 的城市基础目录及经纬度。</li>
-          <li>天气概览由 AutoNotice WeatherWorker 提供，偶发网络问题可稍后重试。</li>
+          <li>手动选择城市时，AutoNotice 会使用 Common API 的国家和地区、城市及区县基础目录。</li>
+          <li>WeatherKit 提供基础天气，和风天气补充中国官方预警与分钟级降水，RainViewer 提供雷达瓦片；不同来源可能存在更新时间差异。</li>
+          <li>偶发网络或数据源问题可稍后刷新天气概览。</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h3>到期提醒没有按预期出现怎么办？</h3>
+        <ul>
+          <li>确认提醒已启用，并检查到期时间、提前量、重复方式和工作日/星期设置。</li>
+          <li>到期事项优先由 iOS 本地安排通知，不依赖 Worker 定时推送。</li>
+          <li>标题与备注会在设备端加密后再同步；服务端无法读取个人内容。</li>
+          <li>删除 App 或清除本机数据可能移除本地通知安排。</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h3>Developer Webhook 排查</h3>
+        <ul>
+          <li>先在设置的 Webhook 区域发送测试 payload，确认当前设备可以收到通知。</li>
+          <li>请求必须携带当前 Webhook Token，并至少包含 title；建议提供稳定 dedupKey。</li>
+          <li>Webhook Token 应像密码一样保存，泄露后请重新签发。</li>
         </ul>
       </article>
 
@@ -75,7 +98,7 @@
         <ul>
           <li>设备型号、iOS 版本和 AutoNotice 版本号。</li>
           <li>是否来自 TestFlight、App Store 或 Xcode Debug 版本。</li>
-          <li>问题发生前的位置选择、提醒开关、阈值、冷却时间和静默时间设置。</li>
+          <li>问题所属模块，以及发生前的位置、规则、时间和重复设置。</li>
           <li>如方便，可附带脱敏后的界面截图或错误提示。</li>
         </ul>
       </article>
@@ -84,7 +107,7 @@
         <h3>支持型 IAP</h3>
         <ul>
           <li>AutoNotice 的支持型 IAP 是自愿支持开发者的 consumable 商品。</li>
-          <li>购买不会解锁额外功能，也不会影响天气提醒、通知投递、历史记录或设置。</li>
+          <li>购买不会解锁额外功能，也不会影响天气、到期提醒、Webhook、历史记录或设置。</li>
           <li>购买、退款和付款方式由 Apple App Store 处理。</li>
         </ul>
       </article>

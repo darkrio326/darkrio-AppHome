@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoNotice - 自动提醒</title>
-  <meta name="description" content="AutoNotice 是一个轻量模块化提醒 App。0.1 先从 Weather Notice 开始，后续扩展更多提醒模块与 Pro 自定义模块。" />
+  <meta name="description" content="AutoNotice 0.2 是一个轻量模块化自动提醒 App，提供天气提醒、到期提醒与 Developer Webhook。" />
   <link rel="canonical" href="https://app.darkrio326.top/autonotice/" />
   <meta property="og:title" content="AutoNotice - 自动提醒" />
-  <meta property="og:description" content="轻量模块化提醒工具，先从天气提醒开始。" />
+  <meta property="og:description" content="天气变化、到期事项与 Developer Webhook，共用一套通知与历史体验。" />
   <meta property="og:url" content="https://app.darkrio326.top/autonotice/" />
   <meta property="og:image" content="https://app.darkrio326.top/autonotice/assets/icon.png" />
   <meta name="theme-color" content="#1d74f5" />
+  <link rel="icon" href="/autonotice/assets/icon.png" />
   <link rel="stylesheet" href="/autonotice/styles.css" />
 </head>
 <body>
@@ -34,10 +35,10 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="eyebrow" data-i18n="autonotice.badge">AutoNotice 0.1 · Weather Notice</div>
-          <h1 data-i18n="autonotice.heroTitle">一个轻量、可扩展的提醒工具。</h1>
+          <div class="eyebrow" data-i18n="autonotice.badge">AutoNotice 0.2 · TestFlight</div>
+          <h1 data-i18n="autonotice.heroTitle">把需要持续盯着的变化，交给提醒模块。</h1>
           <p class="lead" data-i18n="autonotice.heroLead">
-            AutoNotice 把提醒拆成一个个小模块。0.1 先做 Weather Notice：当你选择的位置在未来 1-2 小时内可能下雨时，通过通知提前提醒你。
+            AutoNotice 不是待办清单，也不是天气信息流。0.2 把天气变化、到期事项和 Developer Webhook 放进同一套通知、历史与设置体验。
           </p>
           <div class="hero-actions">
             <a class="button primary" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer" data-i18n="action.testFlight">加入 TestFlight</a>
@@ -53,39 +54,61 @@
     </section>
 
     <ul class="signal-list" aria-label="AutoNotice highlights">
-      <li><strong data-i18n="autonotice.signal1Title">当前位置或城市</strong><span data-i18n="autonotice.signal1Body">可使用当前位置，也可手动选择城市。</span></li>
-      <li><strong data-i18n="autonotice.signal2Title">少打扰</strong><span data-i18n="autonotice.signal2Body">支持阈值、冷却时间和静默时间。</span></li>
-      <li><strong data-i18n="autonotice.signal3Title">模块化扩展</strong><span data-i18n="autonotice.signal3Body">未来提醒类型可以作为 Notice 模块增加。</span></li>
+      <li><strong data-i18n="autonotice.signal1Title">三个可用入口</strong><span data-i18n="autonotice.signal1Body">天气、到期事项与 Developer Webhook。</span></li>
+      <li><strong data-i18n="autonotice.signal2Title">只在需要时打扰</strong><span data-i18n="autonotice.signal2Body">阈值、冷却、静默、去重与时效性预警。</span></li>
+      <li><strong data-i18n="autonotice.signal3Title">无需账号</strong><span data-i18n="autonotice.signal3Body">本地优先，只处理已启用模块所需的最小数据。</span></li>
     </ul>
 
     <section class="section">
       <div class="section-header">
-        <h2 data-i18n="autonotice.sectionTitle">它不是另一个天气信息流。</h2>
+        <h2 data-i18n="autonotice.sectionTitle">一个 App，管理不同来源的提醒。</h2>
         <p data-i18n="autonotice.sectionLead">
-          AutoNotice 不追求复杂地图、资讯流或连续刷新的面板。它只处理一类更具体的问题：重要变化发生前，把提醒送到你面前。
+          每个模块负责自己的输入与规则，最终进入同一套通知投递与历史链路。你看到的是结果，而不是后台复杂度。
         </p>
       </div>
       <div class="grid">
         <article class="card">
-          <h3 data-i18n="autonotice.weatherOverviewTitle">天气概览</h3>
-          <p data-i18n="autonotice.weatherOverviewBody">在 App 内查看当前位置或所选城市的天气概览，快速确认接下来是否有降雨风险。</p>
+          <h3 data-i18n="autonotice.weatherOverviewTitle">Weather Notice</h3>
+          <p data-i18n="autonotice.weatherOverviewBody">分别设置降水、降温、升温、大风和官方天气预警；下雨时可查看分钟级趋势与雷达/云图。</p>
         </article>
         <article class="card">
-          <h3 data-i18n="autonotice.rulesTitle">提醒规则</h3>
-          <p data-i18n="autonotice.rulesBody">配置降雨提醒开关、概率阈值、冷却时间和静默时间，并同步到 AutoNotice WeatherWorker。</p>
+          <h3 data-i18n="autonotice.rulesTitle">Expiry Notice</h3>
+          <p data-i18n="autonotice.rulesBody">为订阅、证件和其他到期事项设置提前量与重复周期；本地通知优先，个人内容端侧加密。</p>
         </article>
         <article class="card">
-          <h3 data-i18n="autonotice.historyTitle">通知历史</h3>
-          <p data-i18n="autonotice.historyBody">查看最近的提醒记录，确认哪些提醒已经发送，以及提醒触发的大致原因。</p>
+          <h3 data-i18n="autonotice.historyTitle">Developer Webhook</h3>
+          <p data-i18n="autonotice.historyBody">让自己的脚本或 Connector 发送标准 payload，AutoNotice 负责设备鉴权、APNs 投递与历史记录。</p>
         </article>
         <article class="card wide">
-          <h3 data-i18n="autonotice.workerTitle">独立提醒链路</h3>
-          <p data-i18n="autonotice.workerBody">AutoNotice 使用独立 WeatherWorker 处理设备注册、天气规则、天气概览、通知日志和测试通知。Common API 只用于手动选择城市这类共享基础资料。</p>
+          <h3 data-i18n="autonotice.workerTitle">统一投递与历史</h3>
+          <p data-i18n="autonotice.workerBody">天气触发、到期事项和 Webhook 都归入统一 Notice Event。最近历史优先加载，可查看详情并导出记录。</p>
         </article>
         <article class="card wide">
-          <h3 data-i18n="autonotice.proTitle">从模块到 Pro</h3>
-          <p data-i18n="autonotice.proBody">0.2 之后可以继续增加新的提醒模块；等审计、投递和用户配置闭环稳定后，Pro 买断可以用于解锁用户自定义 Notice 模块。</p>
+          <h3 data-i18n="autonotice.proTitle">从 Free 模块到 Pro</h3>
+          <p data-i18n="autonotice.proBody">0.x 继续完善开箱即用的 Free 模块；未来 Pro Lifetime 将解锁 Custom Notice Builder，官方专业模块则可作为 Module Pack 提供。</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section product-gallery" aria-labelledby="autonotice-gallery-title">
+      <div class="section-header">
+        <div class="eyebrow" data-i18n="autonotice.screenshotEyebrow">真实界面</div>
+        <h2 id="autonotice-gallery-title" data-i18n="autonotice.screenshotTitle">提醒状态、规则与设置，一眼可读。</h2>
+        <p data-i18n="autonotice.screenshotLead">以下界面来自当前 0.2 TestFlight 截图管线，并随简体中文或英文自动切换。</p>
+      </div>
+      <div class="screenshot-strip">
+        <figure class="product-shot">
+          <img src="/autonotice/assets/screenshots/status-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/status-zh.webp" data-src-en="/autonotice/assets/screenshots/status-en.webp" alt="" loading="eager" />
+          <figcaption data-i18n="autonotice.screenshotStatus">状态：分钟级降雨、天气模块与到期事项。</figcaption>
+        </figure>
+        <figure class="product-shot">
+          <img src="/autonotice/assets/screenshots/rules-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/rules-zh.webp" data-src-en="/autonotice/assets/screenshots/rules-en.webp" alt="" loading="lazy" />
+          <figcaption data-i18n="autonotice.screenshotRules">规则：五类天气变化分别开关。</figcaption>
+        </figure>
+        <figure class="product-shot">
+          <img src="/autonotice/assets/screenshots/settings-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/settings-zh.webp" data-src-en="/autonotice/assets/screenshots/settings-en.webp" alt="" loading="lazy" />
+          <figcaption data-i18n="autonotice.screenshotSettings">设置：语言、主题、支持与开发者工具。</figcaption>
+        </figure>
       </div>
     </section>
   </main>

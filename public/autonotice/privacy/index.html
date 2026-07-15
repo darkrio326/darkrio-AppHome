@@ -4,11 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoNotice 隐私政策</title>
-  <meta name="description" content="AutoNotice 隐私政策，说明位置、通知、天气提醒和支持型 IAP 相关数据处理方式。" />
+  <meta name="description" content="AutoNotice 隐私政策，说明精确位置、设备标识、Webhook 内容、到期提醒加密与通知投递的数据处理方式。" />
   <link rel="canonical" href="https://app.darkrio326.top/autonotice/privacy/" />
   <meta property="og:title" content="AutoNotice 隐私政策" />
   <meta property="og:url" content="https://app.darkrio326.top/autonotice/privacy/" />
   <meta name="theme-color" content="#1d74f5" />
+  <link rel="icon" href="/autonotice/assets/icon.png" />
   <link rel="stylesheet" href="/autonotice/styles.css" />
 </head>
 <body>
@@ -33,115 +34,123 @@
       <div class="eyebrow" data-i18n="privacy.eyebrow">AutoNotice Privacy Policy</div>
       <h1 data-i18n="privacy.title">隐私政策</h1>
       <p class="doc-lead" data-i18n="privacy.lead">
-        AutoNotice 是一个轻量自动提醒 App。第一版专注天气提醒，本政策说明我们会处理哪些信息、为什么处理，以及你可以如何管理这些信息。
+        AutoNotice 0.2 提供天气提醒、到期提醒与 Developer Webhook。本政策说明精确位置、设备标识、用户提交内容和加密到期内容如何被处理。
       </p>
       <div class="meta-row">
         <span class="meta-pill" data-i18n="privacy.product">适用产品：AutoNotice</span>
-        <span class="meta-pill" data-i18n="privacy.updated">最后更新：2026-07-03</span>
+        <span class="meta-pill" data-i18n="privacy.updated">最后更新：2026-07-15</span>
         <span class="meta-pill" data-i18n="privacy.noAccount">无需账号</span>
       </div>
     </section>
 
     <div data-autonotice-privacy-sections>
-    <section class="doc-card">
-      <h2>一、我们是谁</h2>
-      <p>
-        AutoNotice 是 darkrio Studio 提供的自动提醒工具。当前版本主要提供天气提醒、天气概览、位置选择、通知历史、测试通知和可选支持开发者 IAP。
-      </p>
-      <p>
-        本政策适用于 AutoNotice App 以及 app.darkrio326.top 上与 AutoNotice 直接相关的支持页面。
-      </p>
-    </section>
+      <section class="doc-card">
+        <h2>一、我们是谁</h2>
+        <p>AutoNotice 是 darkrio Studio 提供的轻量自动提醒工具。当前 0.2 版本提供 Weather Notice、Expiry Notice、Developer Webhook、统一通知历史和可选支持开发者 IAP。</p>
+        <p>本政策适用于 AutoNotice App 以及 app.darkrio326.top 上与 AutoNotice 直接相关的支持页面。</p>
+      </section>
 
-    <section class="doc-card">
-      <h2>二、我们处理哪些信息</h2>
-      <p>AutoNotice 不要求注册账号，也不会主动收集姓名、手机号、身份证号等个人身份信息。</p>
-      <p>根据你主动使用的功能，AutoNotice 可能处理以下信息：</p>
-      <ul>
-        <li>你选择的当前位置或手动选择城市对应的经纬度、城市名称和时区。</li>
-        <li>天气提醒规则，包括提醒开关、降雨阈值、冷却时间和静默时间。</li>
-        <li>用于发送通知的 APNs device token、Bundle ID、App 版本和 APNs environment。</li>
-        <li>天气概览、提醒同步、测试通知和通知日志所需的最小请求状态。</li>
-        <li>可选支持型 IAP 的 StoreKit 商品状态、购买结果和本机记录。</li>
-      </ul>
-      <p>
-        我们只在提供天气提醒、发送通知、展示历史记录、排查故障和防滥用所必需的范围内处理信息，不出售个人数据，也不用于广告画像。
-      </p>
-    </section>
+      <section class="doc-card">
+        <h2>二、我们处理哪些信息</h2>
+        <p>AutoNotice 不要求注册账号，也不会主动收集姓名、手机号、身份证号等个人身份信息。</p>
+        <p>根据你主动使用的功能，AutoNotice 可能处理以下信息：</p>
+        <ul>
+          <li>精确位置：经纬度、国家和地区、城市或区县名称及时区。</li>
+          <li>设备标识：稳定 Device ID、APNs device token、Bundle ID、App 版本和 APNs environment。</li>
+          <li>天气模块规则、概览、触发证据、通知历史和错误状态。</li>
+          <li>到期时间与重复规则等 metadata，以及设备端加密后的标题和备注 envelope。</li>
+          <li>通过 Developer Webhook 主动提交的通知标题、正文和可选 payload。</li>
+          <li>可选支持型 IAP 的 StoreKit 商品状态、购买结果和本机记录。</li>
+        </ul>
+        <p>App Store 隐私标签将精确位置、设备 ID 和其他用户内容标记为与用户关联，因为它们会关联到用于投递的稳定设备身份；这些数据不用于跟踪。</p>
+        <p>我们不出售个人数据，不投放广告，也不建立跨 App 或网站画像。</p>
+      </section>
 
-    <section class="doc-card">
-      <h2>三、位置与天气数据</h2>
-      <ul>
-        <li>当你选择“当前位置”时，App 会请求系统定位权限，用于获得提醒规则所需的大致位置。</li>
-        <li>当你手动选择城市时，App 可调用 Common API 的国家/城市基础目录，使用城市记录中的经纬度写入本机天气提醒规则。</li>
-        <li>AutoNotice WeatherWorker 会基于经纬度向 Apple WeatherKit 查询天气，并判断是否需要发送提醒。</li>
-        <li>AutoNotice 不提供社交定位、实时轨迹分享或广告定位能力。</li>
-      </ul>
-    </section>
+      <section class="doc-card">
+        <h2>三、位置与天气数据</h2>
+        <ul>
+          <li>当前位置用于更新所在区县、天气网格和提醒规则。</li>
+          <li>手动选择地点使用 Common API 的国家和地区、城市及区县基础目录。</li>
+          <li>WeatherKit 提供基础天气，和风天气补充中国官方预警与分钟级降水，RainViewer 提供雷达瓦片。</li>
+          <li>不同来源可能具有不同更新时间和空间分辨率，App 会展示相应来源说明。</li>
+          <li>AutoNotice 不提供社交定位、实时轨迹分享或广告定位能力。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>四、通知与 WeatherWorker</h2>
-      <p>
-        AutoNotice 使用独立 WeatherWorker 处理设备注册、天气规则、天气概览、通知日志、测试通知和定时检查。WeatherWorker 运行在 Cloudflare 基础设施上。
-      </p>
-      <ul>
-        <li>Debug / Xcode 直接运行版本注册 APNs development token。</li>
-        <li>TestFlight / App Store 版本注册 APNs production token。</li>
-        <li>通知内容用于提醒天气变化，不包含广告内容。</li>
-        <li>你可以在 iOS 系统设置中关闭 AutoNotice 通知权限。</li>
-      </ul>
-    </section>
+      <section class="doc-card">
+        <h2>四、设备、通知与 Notice Engine</h2>
+        <p>AutoNotice Worker 运行在 Cloudflare 基础设施上，负责设备注册、通用 Notice Rule、天气触发、Notice Event、APNs 投递、通知历史和测试通知。</p>
+        <ul>
+          <li>Xcode Debug 使用 APNs development；TestFlight 与 App Store 使用 APNs production。</li>
+          <li>官方天气预警可能使用 iOS 时效性通知。</li>
+          <li>通知只用于你启用或主动触发的提醒，不包含广告。</li>
+          <li>你可以在 iOS 系统设置中关闭通知权限。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>五、支持型 IAP</h2>
-      <p>
-        AutoNotice 提供可选的支持开发者 consumable IAP。购买、退款、付款方式和交易基础记录由 Apple App Store 处理，AutoNotice 不接触你的银行卡号或完整付款信息。
-      </p>
-      <ul>
-        <li>支持型 IAP 不解锁额外功能。</li>
-        <li>不购买也可以使用天气提醒、通知、历史记录和设置。</li>
-        <li>App 可能在本机记录最近一次支持商品和支持时间，用于展示感谢状态。</li>
-      </ul>
-    </section>
+      <section class="doc-card">
+        <h2>五、到期提醒与端侧加密</h2>
+        <ul>
+          <li>Expiry Notice 优先由 iOS 在本机安排通知。</li>
+          <li>标题与备注在设备端使用 Keychain 管理的密钥加密后再同步；服务端无法读取或解析明文个人内容。</li>
+          <li>到期时间、提前量、重复规则和来源关系可能作为必要调度 metadata 同步。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>六、数据保留与删除</h2>
-      <ul>
-        <li>本机设置、提醒规则、位置偏好和历史记录由你在设备上管理。</li>
-        <li>删除 App 或清除 App 数据可能会移除本机副本。</li>
-        <li>关闭通知权限后，系统将阻止 AutoNotice 继续展示通知。</li>
-        <li>如需请求排查或删除服务端关联状态，可通过支持邮箱联系开发者。</li>
-      </ul>
-    </section>
+      <section class="doc-card">
+        <h2>六、Developer Webhook</h2>
+        <ul>
+          <li>Webhook 只投递你或你的 Connector 主动提交的标准通知。</li>
+          <li>明文 token 与设备鉴权 secret 只保存在本机 Keychain；Worker 只保存不可逆 hash 和短前缀。</li>
+          <li>Token 泄露后应在 App 内重新签发并停用旧凭据。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>七、第三方与基础设施服务</h2>
-      <ul>
-        <li>Apple：WeatherKit、APNs、StoreKit、App Store 和系统权限。</li>
-        <li>Cloudflare：app.darkrio326.top 页面托管，以及 AutoNotice WeatherWorker、D1 等提醒服务基础设施。</li>
-        <li>Common API：仅用于手动城市选择这类共享只读基础资料查询。</li>
-      </ul>
-    </section>
+      <section class="doc-card">
+        <h2>七、支持型 IAP</h2>
+        <p>支持型 consumable IAP 由 Apple App Store 处理，AutoNotice 不接触银行卡号或完整付款信息。</p>
+        <ul>
+          <li>支持型 IAP 不解锁额外功能。</li>
+          <li>不购买也可以使用天气、到期提醒、Webhook、历史和设置。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>八、未成年人保护</h2>
-      <p>
-        AutoNotice 面向一般工具类使用场景设计。我们不会故意面向未满 14 周岁的未成年人提供服务或收集其个人信息。
-      </p>
-    </section>
+      <section class="doc-card">
+        <h2>八、数据保留与删除</h2>
+        <ul>
+          <li>本机设置、规则、位置偏好、加密密钥和本地通知安排由你在设备上管理。</li>
+          <li>服务端只在模块运行、投递、历史审计和防滥用所需范围内保留相关状态。</li>
+          <li>删除 App 可能移除本机副本和本地通知安排，但不会自动向所有远程服务发出删除请求。</li>
+          <li>如需删除服务端关联状态，可通过支持邮箱联系开发者。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>九、政策更新</h2>
-      <p>
-        我们可能会根据产品功能、法律法规或服务配置变化更新本隐私政策。更新后的版本将在本页面发布，并自发布之日起生效。
-      </p>
-    </section>
+      <section class="doc-card">
+        <h2>九、第三方与基础设施服务</h2>
+        <ul>
+          <li>Apple：WeatherKit、APNs、StoreKit、App Store 和系统权限。</li>
+          <li>Cloudflare：官网托管、AutoNotice Worker、D1 和相关提醒基础设施。</li>
+          <li>和风天气：官方天气预警与分钟级降水补充数据。</li>
+          <li>RainViewer：雷达历史瓦片及元数据。</li>
+          <li>Common API：国家和地区、城市及区县基础资料。</li>
+        </ul>
+      </section>
 
-    <section class="doc-card">
-      <h2>十、联系我们</h2>
-      <p>如果你对本隐私政策或 AutoNotice 的数据处理有任何疑问、建议或投诉，可以通过以下方式联系开发者：</p>
-      <p><a class="contact-box" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
-    </section>
+      <section class="doc-card">
+        <h2>十、未成年人保护</h2>
+        <p>AutoNotice 面向一般工具类使用场景设计。我们不会故意面向未满 14 周岁的未成年人提供服务或收集其个人信息。</p>
+      </section>
+
+      <section class="doc-card">
+        <h2>十一、政策更新</h2>
+        <p>我们可能会根据产品功能、法律法规或服务配置变化更新本隐私政策。更新后的版本将在本页面发布，并自发布之日起生效。</p>
+      </section>
+
+      <section class="doc-card">
+        <h2>十二、联系我们</h2>
+        <p>如果你对本隐私政策或 AutoNotice 的数据处理有任何疑问、建议或投诉，可以通过以下方式联系开发者：</p>
+        <p><a class="contact-box" href="mailto:support@darkrio326.top">support@darkrio326.top</a></p>
+      </section>
     </div>
   </main>
 
