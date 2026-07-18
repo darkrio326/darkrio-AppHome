@@ -6,24 +6,30 @@
   <title>AutoNotice - 自动提醒</title>
   <meta name="description" content="AutoNotice 0.2 是一个轻量模块化自动提醒 App，提供天气提醒、到期提醒与 Developer Webhook。" />
   <link rel="canonical" href="https://app.darkrio326.top/autonotice/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AutoNotice" />
   <meta property="og:title" content="AutoNotice - 自动提醒" />
   <meta property="og:description" content="天气变化、到期事项与 Developer Webhook，共用一套通知与历史体验。" />
   <meta property="og:url" content="https://app.darkrio326.top/autonotice/" />
   <meta property="og:image" content="https://app.darkrio326.top/autonotice/assets/icon.png" />
-  <meta name="theme-color" content="#1d74f5" />
+  <meta name="theme-color" content="#f3f0e6" />
   <link rel="icon" href="/autonotice/assets/icon.png" />
-  <link rel="stylesheet" href="/autonotice/styles.css" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.2/src/regular/style.css" />
+  <link rel="stylesheet" href="/autonotice/styles.css?v=20260718b" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="shell topbar">
-    <a class="brand" href="/autonotice/">
+    <a class="brand" href="/autonotice/" aria-label="AutoNotice home">
       <img src="/autonotice/assets/icon.png" alt="" />
       <span>AutoNotice</span>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#weather" data-desktop data-i18n="autonotice.navWeather">天气提醒</a>
+      <a href="#expiry" data-desktop data-i18n="autonotice.navExpiry">到期提醒</a>
+      <a href="#history" data-desktop data-i18n="autonotice.navHistory">历史</a>
       <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
-      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
-      <a href="mailto:support@darkrio326.top" data-i18n="nav.contact">联系开发者</a>
       <select class="locale-switch" data-locale-select aria-label="Language">
         <option value="zh-Hans">简中</option>
         <option value="en">EN</option>
@@ -31,98 +37,156 @@
     </nav>
   </header>
 
-  <main class="shell">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="eyebrow" data-i18n="autonotice.badge">AutoNotice 0.2 · TestFlight</div>
-          <h1 data-i18n="autonotice.heroTitle">把需要持续盯着的变化，交给提醒模块。</h1>
-          <p class="lead" data-i18n="autonotice.heroLead">
-            AutoNotice 不是待办清单，也不是天气信息流。0.2 把天气变化、到期事项和 Developer Webhook 放进同一套通知、历史与设置体验。
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer" data-i18n="action.testFlight">加入 TestFlight</a>
-            <a class="button" href="/autonotice/support/" data-i18n="action.support">技术支持</a>
-            <a class="button" href="/autonotice/privacy/" data-i18n="action.privacy">隐私政策</a>
-            <a class="button" href="mailto:support@darkrio326.top" data-i18n="action.getHelp">获取帮助</a>
+  <main id="main">
+    <section class="shell hero">
+      <div class="hero-copy">
+        <div class="kicker" data-i18n="autonotice.badge">AutoNotice 0.2 · 首个公开版本候选</div>
+        <h1 data-i18n="autonotice.heroTitle">变化发生之前，先收到一条清楚的提醒。</h1>
+        <p class="lead" data-i18n="autonotice.heroLead">AutoNotice 不是待办清单，也不是天气信息流。0.2 把天气变化、到期事项和 Developer Webhook 放进同一套通知、历史与设置体验。</p>
+        <div class="actions">
+          <a class="button button-primary" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer" data-i18n="action.testFlight">加入 TestFlight</a>
+          <a class="button button-quiet" href="#capabilities" data-i18n="autonotice.viewCapabilities">查看当前能力</a>
+        </div>
+        <p class="fineprint" data-i18n="autonotice.heroNote">当前为 0.2 TestFlight 候选版本。无需账号，也无需公开个人资料。</p>
+      </div>
+      <div class="hero-stage" aria-label="AutoNotice app previews">
+        <div class="timeline-rail" aria-hidden="true"><span>16:00</span><span>10:30</span><span>08:10</span><span>07:50</span></div>
+        <img class="hero-shot hero-shot-history" data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/03_notice_history.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" alt="AutoNotice notification history grouped by date" />
+        <img class="hero-shot hero-shot-weather" data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/00_weather_notice.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" alt="AutoNotice weather overview" />
+        <img class="hero-shot hero-shot-rules" data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/02_rule_settings.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" alt="AutoNotice weather notice rules" />
+      </div>
+    </section>
+
+    <section id="capabilities" class="process" aria-label="How AutoNotice works">
+      <div class="shell process-grid">
+        <article><span class="process-index">01</span><div><h2 data-i18n="autonotice.step1Title">设定关心的变化</h2><p data-i18n="autonotice.step1Body">选择天气类型、到期时间或自己的 Webhook 事件。</p></div><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></article>
+        <article><span class="process-index">02</span><div><h2 data-i18n="autonotice.step2Title">仅在命中时提醒</h2><p data-i18n="autonotice.step2Body">阈值、冷却、静默与去重共同减少重复打扰。</p></div><i class="ph ph-bell-ringing" aria-hidden="true"></i></article>
+        <article><span class="process-index">03</span><div><h2 data-i18n="autonotice.step3Title">按日期回看与导出</h2><p data-i18n="autonotice.step3Body">历史按日期分组，支持详情查看与记录导出。</p></div><i class="ph ph-calendar-dots" aria-hidden="true"></i></article>
+      </div>
+    </section>
+
+    <section id="weather" class="shell section weather-section">
+      <div class="weather-copy">
+        <div class="kicker">Weather Notice</div>
+        <h2 data-i18n="autonotice.weatherTitle">五类天气变化，提前知道。</h2>
+        <p class="section-lead" data-i18n="autonotice.weatherLead">分区检查降水、温度与风力变化，并在官方预警命中时及时通知。</p>
+        <ul class="capability-list">
+          <li><i class="ph ph-cloud-rain" aria-hidden="true"></i><strong data-i18n="autonotice.weatherRainTitle">降水</strong><span data-i18n="autonotice.weatherRainBody">降雨概率、预计开始时间与分钟级趋势。</span></li>
+          <li><i class="ph ph-thermometer-cold" aria-hidden="true"></i><strong data-i18n="autonotice.weatherDropTitle">降温</strong><span data-i18n="autonotice.weatherDropBody">未来数小时达到阈值时提醒。</span></li>
+          <li><i class="ph ph-thermometer-hot" aria-hidden="true"></i><strong data-i18n="autonotice.weatherRiseTitle">升温</strong><span data-i18n="autonotice.weatherRiseBody">显著升温或高温达到阈值时提醒。</span></li>
+          <li><i class="ph ph-wind" aria-hidden="true"></i><strong data-i18n="autonotice.weatherWindTitle">大风</strong><span data-i18n="autonotice.weatherWindBody">风速或阵风超过阈值时提醒。</span></li>
+          <li><i class="ph ph-warning" aria-hidden="true"></i><strong data-i18n="autonotice.weatherAlertTitle">官方预警</strong><span data-i18n="autonotice.weatherAlertBody">所在地区出现生效预警时及时通知。</span></li>
+        </ul>
+      </div>
+      <div class="weather-media">
+        <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/00_weather_notice.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" alt="AutoNotice status screen" loading="lazy" />
+        <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/01_location_weather.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/01_location_weather.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/01_location_weather.webp" alt="AutoNotice location screen" loading="lazy" />
+        <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/02_rule_settings.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" alt="AutoNotice rule settings" loading="lazy" />
+      </div>
+    </section>
+
+    <section id="expiry" class="expiry-band">
+      <div class="shell expiry-grid">
+        <div class="expiry-media">
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/00_weather_notice.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" alt="AutoNotice status with expiry notice" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/04_language_settings.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/04_language_settings.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/04_language_settings.webp" alt="AutoNotice settings" loading="lazy" />
+        </div>
+        <div class="expiry-copy">
+          <div class="kicker">Expiry Notice</div>
+          <h2 data-i18n="autonotice.expiryTitle">证件与事项到期，本地优先提醒。</h2>
+          <p class="section-lead" data-i18n="autonotice.expiryLead">为订阅、证件和其他到期事项设置提前量与重复周期；标题与备注在设备端加密。</p>
+          <dl class="fact-list">
+            <div><dt data-i18n="autonotice.expiryFact1Title">本地安排</dt><dd data-i18n="autonotice.expiryFact1Body">iOS 优先安排到期通知。</dd></div>
+            <div><dt data-i18n="autonotice.expiryFact2Title">灵活提前</dt><dd data-i18n="autonotice.expiryFact2Body">支持多阶段提前量与有限重复。</dd></div>
+            <div><dt data-i18n="autonotice.expiryFact3Title">内容加密</dt><dd data-i18n="autonotice.expiryFact3Body">个人标题和备注不以明文同步。</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="webhook" class="webhook-band">
+      <div class="shell webhook-grid">
+        <div>
+          <div class="kicker">Developer Webhook</div>
+          <h2 data-i18n="autonotice.webhookTitle">你的系统事件，通过统一通道送达。</h2>
+          <p class="section-lead" data-i18n="autonotice.webhookLead">脚本或 Connector 发送标准 payload，AutoNotice 负责设备鉴权、去重、APNs 投递与历史记录。</p>
+          <a class="button button-light" href="/autonotice/support/webhook/" data-i18n="autonotice.webhookAction">查看 Webhook 使用指南</a>
+        </div>
+        <pre class="code-card" aria-label="Webhook payload example"><code>POST /webhook
+Content-Type: application/json
+
+{
+  "title": "Weather alert",
+  "module": "developer",
+  "severity": "info",
+  "dedupKey": "event-20260718"
+}</code></pre>
+        <div class="notification-card"><img src="/autonotice/assets/icon.png" alt="" /><div><strong>AutoNotice</strong><span data-i18n="autonotice.webhookExample">新的系统事件已经送达。</span></div><time>08:10</time></div>
+      </div>
+    </section>
+
+    <section id="history" class="shell section history-section">
+      <div class="history-copy">
+        <div class="kicker" data-i18n="autonotice.historyKicker">Shared History</div>
+        <h2 data-i18n="autonotice.historySectionTitle">一处记录，多端查看。按日期自动归档。</h2>
+        <p class="section-lead" data-i18n="autonotice.historyLead">天气、到期与 Webhook 进入同一份历史；iPhone 与 iPad 都能查看详情，并导出记录。</p>
+        <ul class="plain-list">
+          <li data-i18n="autonotice.historyPoint1">今天、昨天及更早记录清晰分组</li>
+          <li data-i18n="autonotice.historyPoint2">通知时间与触发证据保留在详情中</li>
+          <li data-i18n="autonotice.historyPoint3">支持导出历史，便于排查和归档</li>
+        </ul>
+      </div>
+      <div class="history-media">
+        <img class="history-phone" data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/03_notice_history.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" alt="AutoNotice history on iPhone" loading="lazy" />
+        <img class="history-ipad" data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/02_ipad_history.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ipad/en/02_ipad_history.webp" src="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/02_ipad_history.webp" alt="AutoNotice history on iPad" loading="lazy" />
+      </div>
+    </section>
+
+    <section class="gallery-section" aria-labelledby="gallery-title">
+      <div class="shell">
+        <div class="gallery-head">
+          <div><div class="kicker" data-i18n="autonotice.galleryKicker">Current Build</div><h2 id="gallery-title" data-i18n="autonotice.galleryTitle">当前 0.2 的完整界面。</h2></div>
+          <div class="gallery-tabs" role="tablist" aria-label="Screenshot device">
+            <button type="button" role="tab" aria-selected="true" data-gallery-tab="iphone">iPhone</button>
+            <button type="button" role="tab" aria-selected="false" data-gallery-tab="ipad">iPad</button>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <img src="/autonotice/assets/icon.png" alt="" />
+        <div class="gallery-grid" data-gallery-panel="iphone" role="tabpanel">
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/00_weather_notice.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/00_weather_notice.webp" alt="Status" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/01_location_weather.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/01_location_weather.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/01_location_weather.webp" alt="Location" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/02_rule_settings.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/02_rule_settings.webp" alt="Weather rules" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/03_notice_history.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/03_notice_history.webp" alt="History" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/04_language_settings.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/04_language_settings.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/04_language_settings.webp" alt="Settings" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/05_app_support.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ios/en/05_app_support.webp" src="/autonotice/assets/screenshots-v0.2/ios/zh-Hans/05_app_support.webp" alt="Support" loading="lazy" />
+        </div>
+        <div class="gallery-grid gallery-grid-ipad" data-gallery-panel="ipad" role="tabpanel" hidden>
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/00_ipad_overview.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ipad/en/00_ipad_overview.webp" src="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/00_ipad_overview.webp" alt="iPad overview" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/01_ipad_rules.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ipad/en/01_ipad_rules.webp" src="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/01_ipad_rules.webp" alt="iPad rules" loading="lazy" />
+          <img data-locale-src data-src-zh="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/02_ipad_history.webp" data-src-en="/autonotice/assets/screenshots-v0.2/ipad/en/02_ipad_history.webp" src="/autonotice/assets/screenshots-v0.2/ipad/zh-Hans/02_ipad_history.webp" alt="iPad history" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <ul class="signal-list" aria-label="AutoNotice highlights">
-      <li><strong data-i18n="autonotice.signal1Title">三个可用入口</strong><span data-i18n="autonotice.signal1Body">天气、到期事项与 Developer Webhook。</span></li>
-      <li><strong data-i18n="autonotice.signal2Title">只在需要时打扰</strong><span data-i18n="autonotice.signal2Body">阈值、冷却、静默、去重与时效性预警。</span></li>
-      <li><strong data-i18n="autonotice.signal3Title">无需账号</strong><span data-i18n="autonotice.signal3Body">本地优先，只处理已启用模块所需的最小数据。</span></li>
-    </ul>
-
-    <section class="section">
-      <div class="section-header">
-        <h2 data-i18n="autonotice.sectionTitle">一个 App，管理不同来源的提醒。</h2>
-        <p data-i18n="autonotice.sectionLead">
-          每个模块负责自己的输入与规则，最终进入同一套通知投递与历史链路。你看到的是结果，而不是后台复杂度。
-        </p>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <h3 data-i18n="autonotice.weatherOverviewTitle">Weather Notice</h3>
-          <p data-i18n="autonotice.weatherOverviewBody">分别设置降水、降温、升温、大风和官方天气预警；下雨时可查看分钟级趋势与雷达/云图。</p>
-        </article>
-        <article class="card">
-          <h3 data-i18n="autonotice.rulesTitle">Expiry Notice</h3>
-          <p data-i18n="autonotice.rulesBody">为订阅、证件和其他到期事项设置提前量与重复周期；本地通知优先，个人内容端侧加密。</p>
-        </article>
-        <article class="card">
-          <h3 data-i18n="autonotice.historyTitle">Developer Webhook</h3>
-          <p data-i18n="autonotice.historyBody">让自己的脚本或 Connector 发送标准 payload，AutoNotice 负责设备鉴权、APNs 投递与历史记录。</p>
-        </article>
-        <article class="card wide">
-          <h3 data-i18n="autonotice.workerTitle">统一投递与历史</h3>
-          <p data-i18n="autonotice.workerBody">天气触发、到期事项和 Webhook 都归入统一 Notice Event。最近历史优先加载，可查看详情并导出记录。</p>
-        </article>
-        <article class="card wide">
-          <h3 data-i18n="autonotice.proTitle">从 Free 模块到 Pro</h3>
-          <p data-i18n="autonotice.proBody">0.x 继续完善开箱即用的 Free 模块；未来 Pro Lifetime 将解锁 Custom Notice Builder，官方专业模块则可作为 Module Pack 提供。</p>
-        </article>
+    <section class="privacy-strip">
+      <div class="shell privacy-grid">
+        <h2 data-i18n="autonotice.privacyTitle">隐私与安全</h2>
+        <article><i class="ph ph-device-mobile" aria-hidden="true"></i><div><strong data-i18n="autonotice.privacy1Title">本地优先处理</strong><span data-i18n="autonotice.privacy1Body">到期内容在设备端加密，通知由最小数据驱动。</span></div></article>
+        <article><i class="ph ph-database" aria-hidden="true"></i><div><strong data-i18n="autonotice.privacy2Title">只处理必要数据</strong><span data-i18n="autonotice.privacy2Body">只处理已启用模块所需的位置、规则与投递信息。</span></div></article>
+        <article><i class="ph ph-user-circle-minus" aria-hidden="true"></i><div><strong data-i18n="autonotice.privacy3Title">无需账号</strong><span data-i18n="autonotice.privacy3Body">无需公开个人资料，也不用于广告跟踪。</span></div></article>
       </div>
     </section>
 
-    <section class="section product-gallery" aria-labelledby="autonotice-gallery-title">
-      <div class="section-header">
-        <div class="eyebrow" data-i18n="autonotice.screenshotEyebrow">真实界面</div>
-        <h2 id="autonotice-gallery-title" data-i18n="autonotice.screenshotTitle">提醒状态、规则与设置，一眼可读。</h2>
-        <p data-i18n="autonotice.screenshotLead">以下界面来自当前 0.2 TestFlight 截图管线，并随简体中文或英文自动切换。</p>
-      </div>
-      <div class="screenshot-strip">
-        <figure class="product-shot">
-          <img src="/autonotice/assets/screenshots/status-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/status-zh.webp" data-src-en="/autonotice/assets/screenshots/status-en.webp" alt="" loading="eager" />
-          <figcaption data-i18n="autonotice.screenshotStatus">状态：分钟级降雨、天气模块与到期事项。</figcaption>
-        </figure>
-        <figure class="product-shot">
-          <img src="/autonotice/assets/screenshots/rules-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/rules-zh.webp" data-src-en="/autonotice/assets/screenshots/rules-en.webp" alt="" loading="lazy" />
-          <figcaption data-i18n="autonotice.screenshotRules">规则：五类天气变化分别开关。</figcaption>
-        </figure>
-        <figure class="product-shot">
-          <img src="/autonotice/assets/screenshots/settings-zh.webp" data-locale-src data-src-zh="/autonotice/assets/screenshots/settings-zh.webp" data-src-en="/autonotice/assets/screenshots/settings-en.webp" alt="" loading="lazy" />
-          <figcaption data-i18n="autonotice.screenshotSettings">设置：语言、主题、支持与开发者工具。</figcaption>
-        </figure>
-      </div>
+    <section class="shell final-cta">
+      <img src="/autonotice/assets/icon.png" alt="" />
+      <div><h2 data-i18n="autonotice.finalTitle">加入 TestFlight，体验 AutoNotice 0.2。</h2><p data-i18n="autonotice.finalBody">参与首个公开版本候选，帮助我们把提醒做得更少、更清楚。</p></div>
+      <a class="button button-primary" href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer" data-i18n="action.testFlight">加入 TestFlight</a>
     </section>
   </main>
 
-  <footer class="shell">
-    <div class="footer-links">
-      <a href="/" data-i18n="nav.appHome">Apps</a>
-      <a href="https://testflight.apple.com/join/bvvmBE3t" target="_blank" rel="noopener noreferrer" data-i18n="action.testFlight">加入 TestFlight</a>
-      <a href="/autonotice/support/" data-i18n="nav.support">技术支持</a>
-      <a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a>
-      <a href="mailto:support@darkrio326.top">support@darkrio326.top</a>
-    </div>
-    <div>© 2026 darkrio Studio · AutoNotice</div>
+  <footer>
+    <div class="shell footer-row"><span>© 2026 darkrio Studio · AutoNotice</span><div class="footer-links"><a href="/" data-i18n="nav.appHome">Apps</a><a href="/autonotice/support/" data-i18n="nav.support">技术支持</a><a href="/autonotice/privacy/" data-i18n="nav.privacy">隐私政策</a><a href="mailto:support@darkrio326.top" data-i18n="nav.contact">联系开发者</a></div></div>
   </footer>
-  <script src="/i18n.js"></script>
+  <script src="/i18n.js?v=20260718b"></script>
+  <script src="/autonotice/site.js?v=20260718b"></script>
 </body>
 </html>
