@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "channel": "testflight",
+  "channel": "app-store",
   "displayVersion": "0.2",
-  "downloadURL": "https://testflight.apple.com/join/bvvmBE3t",
+  "downloadURL": "https://apps.apple.com/app/autonotice-%E8%87%AA%E5%8A%A8%E6%8F%90%E9%86%92/id6777452429",
   "supportURL": "https://app.darkrio326.top/autonotice/support/webhook/",
-  "updatedAt": "2026-07-15T18:00:00+08:00",
+  "updatedAt": "2026-07-20T12:00:00+08:00",
   "message": {
-    "en": "AutoNotice 0.2 is currently distributed through TestFlight. This entry will switch to the App Store after release.",
-    "zhHans": "AutoNotice 0.2 当前通过 TestFlight 分发；正式发布后，这个入口会切换到 App Store。"
+    "en": "AutoNotice 0.2 is available on the App Store. TestFlight remains the channel for future beta builds.",
+    "zhHans": "AutoNotice 0.2 已在 App Store 上架；后续测试版本继续通过 TestFlight 分发。"
   }
 }
